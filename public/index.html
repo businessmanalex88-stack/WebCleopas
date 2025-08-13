@@ -15,15 +15,17 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .container {
             width: 100%;
             max-width: 400px;
             padding: 20px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
 
         /* Login Page Styles */
@@ -36,19 +38,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .login-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
             width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23f0f0f0;stop-opacity:0.3" /><stop offset="100%" style="stop-color:%23e0e0e0;stop-opacity:0.1" /></linearGradient></defs><rect width="1000" height="1000" fill="url(%23grad)"/><g transform="translate(200,200)"><rect x="0" y="0" width="100" height="150" fill="%23ffd700" opacity="0.3"/><rect x="120" y="20" width="100" height="130" fill="%23ffd700" opacity="0.3"/><rect x="240" y="40" width="100" height="110" fill="%23ffd700" opacity="0.3"/><rect x="360" y="10" width="100" height="140" fill="%23ffd700" opacity="0.3"/></g><g transform="translate(100,400)"><rect x="0" y="0" width="80" height="120" fill="%23ffd700" opacity="0.2"/><rect x="100" y="15" width="80" height="105" fill="%23ffd700" opacity="0.2"/><rect x="200" y="30" width="80" height="90" fill="%23ffd700" opacity="0.2"/></g></svg>') no-repeat center;
-            background-size: cover;
-            opacity: 0.1;
-            z-index: 0;
         }
 
         .login-content {
@@ -115,167 +105,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 10px;
-            position: relative;
-            overflow: hidden;
         }
 
         .login-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .login-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Dashboard Styles */
-        .dashboard {
-            display: none;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .dashboard.active {
-            display: block;
-        }
-
-        .dashboard-header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            margin-right: 20px;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            font-size: 14px;
-        }
-
-        .search-bar input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .user-info {
-            color: white;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .menu-item {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .menu-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-            opacity: 0;
-        }
-
-        .menu-item:hover::before {
-            animation: shine 0.5s ease-in-out;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(45deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(100%) rotate(45deg); opacity: 0; }
-        }
-
-        .menu-icon {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 10px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .menu-text {
-            color: white;
-            font-size: 12px;
-            font-weight: 500;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Menu Item Colors */
-        .menu-item:nth-child(1) .menu-icon { background: #ff6b6b; }
-        .menu-item:nth-child(2) .menu-icon { background: #ff8e53; }
-        .menu-item:nth-child(3) .menu-icon { background: #ffdd59; }
-        .menu-item:nth-child(4) .menu-icon { background: #4ecdc4; }
-        .menu-item:nth-child(5) .menu-icon { background: #45b7d1; }
-        .menu-item:nth-child(6) .menu-icon { background: #26d0ce; }
-        .menu-item:nth-child(7) .menu-icon { background: #feca57; }
-        .menu-item:nth-child(8) .menu-icon { background: #a55eea; }
-
-        .logout-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
         }
 
         .error-message {
@@ -285,39 +119,508 @@
             display: none;
         }
 
-        .success-animation {
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .template-name {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification-badge {
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            position: relative;
+        }
+
+        .notification-badge::before {
+            content: '💬';
+            font-size: 16px;
+        }
+
+        .notification-count {
             position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .search-container {
+            padding: 20px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 35px;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #4CAF50;
-            font-size: 50px;
-            opacity: 0;
-            z-index: 10;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .success-animation.show {
-            animation: successPop 0.6s ease-out;
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 0 20px 20px;
         }
 
-        @keyframes successPop {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 10px;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .menu-text {
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Menu Item Colors */
+        .discuss .menu-icon { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .dashboard-menu .menu-icon { background: linear-gradient(135deg, #e67e22, #d35400); }
+        .calendar .menu-icon { background: linear-gradient(135deg, #f1c40f, #f39c12); }
+        .employees .menu-icon { background: linear-gradient(135deg, #1abc9c, #16a085); }
+        .attendances .menu-icon { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .overtime .menu-icon { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .timeoff .menu-icon { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .expenses .menu-icon { background: linear-gradient(135deg, #34495e, #2c3e50); }
+        .dashboards .menu-icon { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .sop .menu-icon { background: linear-gradient(135deg, #3498db, #2980b9); }
+
+        /* Page Content Styles */
+        .page-content {
+            display: none;
+            background: white;
+            min-height: calc(100vh - 120px);
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Inbox Styles */
+        .inbox-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .inbox-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .inbox-tab.active {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            background: white;
+        }
+
+        .inbox-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .inbox-title {
+            font-size: 18px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mark-read-btn {
+            background: none;
+            border: none;
+            color: #667eea;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .empty-inbox {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-inbox h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+            font-style: italic;
+        }
+
+        .empty-inbox p {
+            font-size: 14px;
+        }
+
+        /* Dashboard Empty State */
+        .dashboard-content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .dashboard-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .empty-dashboard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 60px 20px;
+        }
+
+        .empty-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .empty-dashboard h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .empty-dashboard p {
+            color: #666;
+            font-size: 14px;
+            max-width: 300px;
+            line-height: 1.5;
+        }
+
+        /* Calendar Styles */
+        .calendar-header {
+            padding: 20px;
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .calendar-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .calendar-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .calendar-btn {
+            padding: 8px 16px;
+            border: 1px solid #667eea;
+            background: #667eea;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .calendar-btn.secondary {
+            background: white;
+            color: #667eea;
+        }
+
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-search {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .view-toggles {
+            display: flex;
+            gap: 5px;
+        }
+
+        .view-btn {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .view-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .calendar-week {
+            display: grid;
+            grid-template-columns: 60px repeat(7, 1fr);
+            background: white;
+        }
+
+        .week-header {
+            display: contents;
+        }
+
+        .week-cell {
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 12px;
+            border: 1px solid #e9ecef;
+            background: #f8f9fa;
+        }
+
+        .day-cell {
+            padding: 5px;
+            text-align: center;
+            font-size: 12px;
+            border: 1px solid #e9ecef;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .day-cell.today {
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .time-slots {
+            background: white;
+        }
+
+        .time-slot {
+            display: grid;
+            grid-template-columns: 60px repeat(7, 1fr);
+            border-bottom: 1px solid #e9ecef;
+            min-height: 50px;
+        }
+
+        .time-label {
+            padding: 10px 5px;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+            border-right: 1px solid #e9ecef;
+            background: #f8f9fa;
+        }
+
+        .time-cell {
+            border-right: 1px solid #e9ecef;
+            min-height: 50px;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            padding: 10px 0;
+            display: none;
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .nav-item.active {
+            color: #667eea;
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .login-container {
-                padding: 30px 20px;
-            }
-            
             .menu-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 gap: 15px;
+            }
+            
+            .dashboard-header {
+                padding: 10px 15px;
+            }
+            
+            .search-container {
+                padding: 15px;
             }
         }
     </style>
@@ -326,7 +629,6 @@
     <!-- Login Page -->
     <div class="container" id="loginPage">
         <div class="login-container">
-            <div class="success-animation" id="successAnimation">✓</div>
             <div class="login-content">
                 <div class="logo"></div>
                 <h1>CLEOPAS</h1>
@@ -353,66 +655,502 @@
 
     <!-- Dashboard Page -->
     <div class="dashboard" id="dashboardPage">
-        <button class="logout-btn" onclick="logout()">Logout</button>
-        
-        <div class="dashboard-header">
-            <div class="search-bar">
-                <input type="text" placeholder="Search menu...">
+        <!-- Main Menu View -->
+        <div id="mainMenu" class="menu-view active">
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
             </div>
-            <div class="user-info">
-                <span>👤 ATEP CAHYA GUMIIANG</span>
+
+            <div class="search-container">
+                <div class="search-icon">🔍</div>
+                <input type="text" class="search-bar" placeholder="Search menus...">
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item discuss" onclick="showPage('discuss')">
+                    <div class="menu-icon">💬</div>
+                    <div class="menu-text">Discuss</div>
+                </div>
+                
+                <div class="menu-item dashboard-menu" onclick="showPage('my-dashboard')">
+                    <div class="menu-icon">📊</div>
+                    <div class="menu-text">My Dashboard</div>
+                </div>
+                
+                <div class="menu-item calendar" onclick="showPage('calendar')">
+                    <div class="menu-icon">📅</div>
+                    <div class="menu-text">Calendar</div>
+                </div>
+                
+                <div class="menu-item employees" onclick="showPage('employees')">
+                    <div class="menu-icon">👥</div>
+                    <div class="menu-text">Employees</div>
+                </div>
+                
+                <div class="menu-item attendances" onclick="showPage('attendances')">
+                    <div class="menu-icon">👤</div>
+                    <div class="menu-text">Attendances</div>
+                </div>
+                
+                <div class="menu-item overtime" onclick="showPage('overtime')">
+                    <div class="menu-icon">⏰</div>
+                    <div class="menu-text">Overtime</div>
+                </div>
+                
+                <div class="menu-item timeoff" onclick="showPage('timeoff')">
+                    <div class="menu-icon">🌞</div>
+                    <div class="menu-text">Time Off</div>
+                </div>
+                
+                <div class="menu-item expenses" onclick="showPage('expenses')">
+                    <div class="menu-icon">💰</div>
+                    <div class="menu-text">Expenses</div>
+                </div>
+                
+                <div class="menu-item dashboards" onclick="showPage('dashboards')">
+                    <div class="menu-icon">📈</div>
+                    <div class="menu-text">Dashboards</div>
+                </div>
+                
+                <div class="menu-item sop" onclick="showPage('sop')">
+                    <div class="menu-icon">📋</div>
+                    <div class="menu-text">SOP</div>
+                </div>
             </div>
         </div>
 
-        <div class="menu-grid">
-            <div class="menu-item" onclick="menuClick('Discuss')">
-                <div class="menu-icon">💬</div>
-                <div class="menu-text">Discuss</div>
+        <!-- Discuss/Inbox Page -->
+        <div id="discuss" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
             </div>
-            
-            <div class="menu-item" onclick="menuClick('My Dashboard')">
-                <div class="menu-icon">📊</div>
-                <div class="menu-text">My Dashboard</div>
+
+            <div class="inbox-tabs">
+                <button class="inbox-tab active">Inbox</button>
+                <button class="inbox-tab">Starred</button>
+                <button class="inbox-tab">History</button>
             </div>
-            
-            <div class="menu-item" onclick="menuClick('Calendar')">
-                <div class="menu-icon">📅</div>
-                <div class="menu-text">Calendar</div>
+
+            <div class="inbox-header">
+                <div class="inbox-title">
+                    📧 Inbox
+                </div>
+                <button class="mark-read-btn">Mark all read</button>
             </div>
-            
-            <div class="menu-item" onclick="menuClick('Employees')">
-                <div class="menu-icon">👥</div>
-                <div class="menu-text">Employees</div>
+
+            <div class="empty-inbox">
+                <h3>Congratulations, your inbox is empty</h3>
+                <p>New messages appear here.</p>
             </div>
-            
-            <div class="menu-item" onclick="menuClick('Attendances')">
-                <div class="menu-icon">👤</div>
-                <div class="menu-text">Attendances</div>
+
+            <div class="bottom-nav">
+                <div class="nav-item active">
+                    <div>📧</div>
+                    <div>Mailboxes</div>
+                </div>
+                <div class="nav-item">
+                    <div>👤</div>
+                    <div>Chat</div>
+                </div>
+                <div class="nav-item">
+                    <div>👥</div>
+                    <div>Channel</div>
+                </div>
             </div>
-            
-            <div class="menu-item" onclick="menuClick('Overtime')">
-                <div class="menu-icon">⏰</div>
-                <div class="menu-text">Overtime</div>
+        </div>
+
+        <!-- My Dashboard Page -->
+        <div id="my-dashboard" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
             </div>
-            
-            <div class="menu-item" onclick="menuClick('Time Off')">
-                <div class="menu-icon">🌞</div>
-                <div class="menu-text">Time Off</div>
+
+            <div class="dashboard-title">My Dashboard</div>
+
+            <div class="empty-dashboard">
+                <div class="empty-icon">📄</div>
+                <h3>Your personal dashboard is empty</h3>
+                <p>To add dashboard item, use Add button on top right corner.</p>
             </div>
-            
-            <div class="menu-item" onclick="menuClick('Expenses')">
-                <div class="menu-icon">💰</div>
-                <div class="menu-text">Expenses</div>
+        </div>
+
+        <!-- Calendar Page -->
+        <div id="calendar" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
             </div>
-            
-            <div class="menu-item" onclick="menuClick('Dashboards')">
-                <div class="menu-icon">📈</div>
-                <div class="menu-text">Dashboards</div>
+
+            <div class="calendar-header">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 class="calendar-title">Meetings (Aug 10 - 16, 2025)</h2>
+                    <input type="text" class="calendar-search" placeholder="🔍">
+                </div>
+                
+                <div class="calendar-controls">
+                    <button class="calendar-btn">Add</button>
+                    <button class="calendar-btn secondary">←</button>
+                    <button class="calendar-btn secondary">📅</button>
+                    <button class="calendar-btn secondary">→</button>
+                    <div style="margin-left: auto;">
+                        <button class="calendar-btn secondary">📅</button>
+                    </div>
+                </div>
+
+                <div class="view-toggles">
+                    <button class="view-btn">Day</button>
+                    <button class="view-btn active">Week</button>
+                    <button class="view-btn">Month</button>
+                    <button class="view-btn">Year</button>
+                </div>
             </div>
-            
-            <div class="menu-item" onclick="menuClick('SOP')">
-                <div class="menu-icon">📋</div>
-                <div class="menu-text">SOP</div>
+
+            <div class="calendar-week">
+                <div class="week-header">
+                    <div class="week-cell">Week<br>33</div>
+                    <div class="week-cell">Sun<br>10</div>
+                    <div class="week-cell">Mon<br>11</div>
+                    <div class="week-cell">Tue<br>12</div>
+                    <div class="day-cell today">Wed<br>13</div>
+                    <div class="week-cell">Thu<br>14</div>
+                    <div class="week-cell">Fri<br>15</div>
+                    <div class="week-cell">Sat<br>16</div>
+                </div>
+            </div>
+
+            <div class="time-slots">
+                <div class="time-slot">
+                    <div class="time-label">All day</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+                
+                <div class="time-slot">
+                    <div class="time-label">06:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">07:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">08:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">09:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">10:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">11:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">12:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">13:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">14:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">15:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">16:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">17:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+
+                <div class="time-slot">
+                    <div class="time-label">18:00</div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                    <div class="time-cell"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Menu Pages (placeholder for now) -->
+        <div id="employees" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <h2>Employees</h2>
+                <p>Employee management page will be here.</p>
+            </div>
+        </div>
+
+        <div id="attendances" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <h2>Attendances</h2>
+                <p>Attendance tracking page will be here.</p>
+            </div>
+        </div>
+
+        <div id="overtime" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <h2>Overtime</h2>
+                <p>Overtime management page will be here.</p>
+            </div>
+        </div>
+
+        <div id="timeoff" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <h2>Time Off</h2>
+                <p>Time off request page will be here.</p>
+            </div>
+        </div>
+
+        <div id="expenses" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <h2>Expenses</h2>
+                <p>Expense management page will be here.</p>
+            </div>
+        </div>
+
+        <div id="dashboards" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <h2>Dashboards</h2>
+                <p>Analytics dashboards will be here.</p>
+            </div>
+        </div>
+
+        <div id="sop" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="template-name">Template1</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">1</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <h2>SOP</h2>
+                <p>Standard Operating Procedures will be here.</p>
             </div>
         </div>
     </div>
@@ -425,22 +1163,16 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
-            const successAnimation = document.getElementById('successAnimation');
             
             // Check credentials
             if (username === 'TEST' && password === '12345') {
-                // Show success animation
-                successAnimation.classList.add('show');
-                
                 // Hide error message if shown
                 errorMessage.style.display = 'none';
                 
-                // Wait for animation to complete, then switch to dashboard
-                setTimeout(() => {
-                    document.getElementById('loginPage').style.display = 'none';
-                    document.getElementById('dashboardPage').classList.add('active');
-                    successAnimation.classList.remove('show');
-                }, 600);
+                // Switch to dashboard
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboardPage').classList.add('active');
+                showMainMenu();
             } else {
                 // Show error message
                 errorMessage.style.display = 'block';
@@ -455,17 +1187,28 @@
             }
         });
 
-        // Menu click functionality
-        function menuClick(menuName) {
-            // Add click animation
-            event.currentTarget.style.transform = 'scale(0.95)';
+        // Navigation functions
+        function showMainMenu() {
+            // Hide all page contents
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
             
-            setTimeout(() => {
-                event.currentTarget.style.transform = '';
-            }, 150);
+            // Show main menu
+            document.getElementById('mainMenu').style.display = 'block';
+        }
+
+        function showPage(pageId) {
+            // Hide main menu
+            document.getElementById('mainMenu').style.display = 'none';
             
-            // Alert for demo purposes
-            alert(`Mengakses menu: ${menuName}`);
+            // Hide all page contents
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
         }
 
         // Logout functionality
@@ -479,6 +1222,14 @@
             document.getElementById('errorMessage').style.display = 'none';
         }
 
+        // Tab switching for inbox
+        document.querySelectorAll('.inbox-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.inbox-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
         // Add shake animation for wrong login
         const shakeStyle = document.createElement('style');
         shakeStyle.textContent = `
@@ -489,51 +1240,6 @@
             }
         `;
         document.head.appendChild(shakeStyle);
-
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add floating particles effect
-            createFloatingParticles();
-        });
-
-        function createFloatingParticles() {
-            const particleContainer = document.createElement('div');
-            particleContainer.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-                z-index: -1;
-            `;
-            document.body.appendChild(particleContainer);
-
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.style.cssText = `
-                    position: absolute;
-                    width: 4px;
-                    height: 4px;
-                    background: rgba(255, 255, 255, 0.3);
-                    border-radius: 50%;
-                    animation: float ${3 + Math.random() * 4}s ease-in-out infinite;
-                    animation-delay: ${Math.random() * 2}s;
-                    left: ${Math.random() * 100}%;
-                    top: ${Math.random() * 100}%;
-                `;
-                particleContainer.appendChild(particle);
-            }
-
-            const floatStyle = document.createElement('style');
-            floatStyle.textContent = `
-                @keyframes float {
-                    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-                    50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-                }
-            `;
-            document.head.appendChild(floatStyle);
-        }
     </script>
 </body>
 </html>
