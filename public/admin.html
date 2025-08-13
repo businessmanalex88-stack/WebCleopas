@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLEOPAS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        /* Login Page Styles */
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23f0f0f0;stop-opacity:0.3" /><stop offset="100%" style="stop-color:%23e0e0e0;stop-opacity:0.1" /></linearGradient></defs><rect width="1000" height="1000" fill="url(%23grad)"/><g transform="translate(200,200)"><rect x="0" y="0" width="100" height="150" fill="%23ffd700" opacity="0.3"/><rect x="120" y="20" width="100" height="130" fill="%23ffd700" opacity="0.3"/><rect x="240" y="40" width="100" height="110" fill="%23ffd700" opacity="0.3"/><rect x="360" y="10" width="100" height="140" fill="%23ffd700" opacity="0.3"/></g><g transform="translate(100,400)"><rect x="0" y="0" width="80" height="120" fill="%23ffd700" opacity="0.2"/><rect x="100" y="15" width="80" height="105" fill="%23ffd700" opacity="0.2"/><rect x="200" y="30" width="80" height="90" fill="%23ffd700" opacity="0.2"/></g></svg>') no-repeat center;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .login-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo::before {
+            content: '🏢';
+            font-size: 32px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .dashboard-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            margin-right: 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 14px;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .user-info {
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+
+        .menu-item:hover::before {
+            animation: shine 0.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .menu-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-text {
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Menu Item Colors */
+        .menu-item:nth-child(1) .menu-icon { background: #ff6b6b; }
+        .menu-item:nth-child(2) .menu-icon { background: #ff8e53; }
+        .menu-item:nth-child(3) .menu-icon { background: #ffdd59; }
+        .menu-item:nth-child(4) .menu-icon { background: #4ecdc4; }
+        .menu-item:nth-child(5) .menu-icon { background: #45b7d1; }
+        .menu-item:nth-child(6) .menu-icon { background: #26d0ce; }
+        .menu-item:nth-child(7) .menu-icon { background: #feca57; }
+        .menu-item:nth-child(8) .menu-icon { background: #a55eea; }
+
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #ff4757;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .success-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #4CAF50;
+            font-size: 50px;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .success-animation.show {
+            animation: successPop 0.6s ease-out;
+        }
+
+        @keyframes successPop {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="container" id="loginPage">
+        <div class="login-container">
+            <div class="success-animation" id="successAnimation">✓</div>
+            <div class="login-content">
+                <div class="logo"></div>
+                <h1>CLEOPAS</h1>
+                
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="text" id="username" placeholder="Username" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder="Kata sandi" required>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Masuk</button>
+                    <div class="error-message" id="errorMessage">Username atau kata sandi salah!</div>
+                </form>
+                
+                <p style="margin-top: 20px; color: #666; font-size: 12px;">
+                    Kelola Basis Data ✓ yang Didukung oleh Hibrid
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div class="dashboard" id="dashboardPage">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        
+        <div class="dashboard-header">
+            <div class="search-bar">
+                <input type="text" placeholder="Search menu...">
+            </div>
+            <div class="user-info">
+                <span>👤 ATEP CAHYA GUMIIANG</span>
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-item" onclick="menuClick('Discuss')">
+                <div class="menu-icon">💬</div>
+                <div class="menu-text">Discuss</div>
+            </div>
+            
+            <div class="menu-item" onclick="menuClick('My Dashboard')">
+                <div class="menu-icon">📊</div>
+                <div class="menu-text">My Dashboard</div>
+            </div>
+            
+            <div class="menu-item" onclick="menuClick('Calendar')">
+                <div class="menu-icon">📅</div>
+                <div class="menu-text">Calendar</div>
+            </div>
+            
+            <div class="menu-item" onclick="menuClick('Employees')">
+                <div class="menu-icon">👥</div>
+                <div class="menu-text">Employees</div>
+            </div>
+            
+            <div class="menu-item" onclick="menuClick('Attendances')">
+                <div class="menu-icon">👤</div>
+                <div class="menu-text">Attendances</div>
+            </div>
+            
+            <div class="menu-item" onclick="menuClick('Overtime')">
+                <div class="menu-icon">⏰</div>
+                <div class="menu-text">Overtime</div>
+            </div>
+            
+            <div class="menu-item" onclick="menuClick('Time Off')">
+                <div class="menu-icon">🌞</div>
+                <div class="menu-text">Time Off</div>
+            </div>
+            
+            <div class="menu-item" onclick="menuClick('Expenses')">
+                <div class="menu-icon">💰</div>
+                <div class="menu-text">Expenses</div>
+            </div>
+            
+            <div class="menu-item" onclick="menuClick('Dashboards')">
+                <div class="menu-icon">📈</div>
+                <div class="menu-text">Dashboards</div>
+            </div>
+            
+            <div class="menu-item" onclick="menuClick('SOP')">
+                <div class="menu-icon">📋</div>
+                <div class="menu-text">SOP</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Login functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const successAnimation = document.getElementById('successAnimation');
+            
+            // Check credentials
+            if (username === 'TEST' && password === '12345') {
+                // Show success animation
+                successAnimation.classList.add('show');
+                
+                // Hide error message if shown
+                errorMessage.style.display = 'none';
+                
+                // Wait for animation to complete, then switch to dashboard
+                setTimeout(() => {
+                    document.getElementById('loginPage').style.display = 'none';
+                    document.getElementById('dashboardPage').classList.add('active');
+                    successAnimation.classList.remove('show');
+                }, 600);
+            } else {
+                // Show error message
+                errorMessage.style.display = 'block';
+                
+                // Add shake animation to form
+                const loginContainer = document.querySelector('.login-container');
+                loginContainer.style.animation = 'shake 0.5s ease-in-out';
+                
+                setTimeout(() => {
+                    loginContainer.style.animation = '';
+                }, 500);
+            }
+        });
+
+        // Menu click functionality
+        function menuClick(menuName) {
+            // Add click animation
+            event.currentTarget.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                event.currentTarget.style.transform = '';
+            }, 150);
+            
+            // Alert for demo purposes
+            alert(`Mengakses menu: ${menuName}`);
+        }
+
+        // Logout functionality
+        function logout() {
+            document.getElementById('dashboardPage').classList.remove('active');
+            document.getElementById('loginPage').style.display = 'flex';
+            
+            // Clear form
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        // Add shake animation for wrong login
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add floating particles effect
+            createFloatingParticles();
+        });
+
+        function createFloatingParticles() {
+            const particleContainer = document.createElement('div');
+            particleContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: -1;
+            `;
+            document.body.appendChild(particleContainer);
+
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 4px;
+                    height: 4px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    animation: float ${3 + Math.random() * 4}s ease-in-out infinite;
+                    animation-delay: ${Math.random() * 2}s;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                `;
+                particleContainer.appendChild(particle);
+            }
+
+            const floatStyle = document.createElement('style');
+            floatStyle.textContent = `
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+                    50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(floatStyle);
+        }
+    </script>
+</body>
+</html>
