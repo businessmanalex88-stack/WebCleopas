@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLEOPAS</title>
+    <title>CLEOPAS - HR Management System</title>
     <style>
         * {
             margin: 0;
@@ -140,6 +140,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .header-left {
@@ -156,10 +157,11 @@
             cursor: pointer;
         }
 
-        .template-name {
+        .company-name {
             color: white;
-            font-size: 16px;
-            font-weight: 500;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .header-right {
@@ -169,22 +171,27 @@
         }
 
         .notification-badge {
-            background: #4CAF50;
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 12px;
             position: relative;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification-badge:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .notification-badge::before {
             content: '💬';
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .notification-count {
@@ -194,26 +201,33 @@
             background: #ff4757;
             color: white;
             border-radius: 50%;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
         }
 
         .user-avatar {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: #4CAF50;
+            background: rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .user-avatar:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .dropdown-menu {
@@ -222,10 +236,11 @@
             right: 0;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            min-width: 150px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            min-width: 180px;
             display: none;
             z-index: 1000;
+            border: 1px solid #e9ecef;
         }
 
         .dropdown-menu.active {
@@ -233,15 +248,28 @@
         }
 
         .dropdown-item {
-            padding: 10px 15px;
+            padding: 12px 16px;
             cursor: pointer;
             transition: background 0.3s;
             font-size: 14px;
             color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .dropdown-item:hover {
-            background: #f5f5f5;
+            background: #f8f9fa;
+        }
+
+        .dropdown-item:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-item:last-child {
+            border-radius: 0 0 8px 8px;
+            border-top: 1px solid #e9ecef;
+            color: #dc3545;
         }
 
         .search-container {
@@ -257,10 +285,16 @@
             color: white;
             font-size: 14px;
             position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .search-bar::placeholder {
             color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-bar:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .search-container {
@@ -288,11 +322,14 @@
             align-items: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            padding: 10px;
+            padding: 15px 10px;
+            border-radius: 15px;
         }
 
         .menu-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .menu-icon {
@@ -303,8 +340,9 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             position: relative;
+            font-size: 24px;
         }
 
         .menu-text {
@@ -312,6 +350,7 @@
             font-size: 12px;
             font-weight: 500;
             text-align: center;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
 
         /* Menu Item Colors */
@@ -338,11 +377,11 @@
         }
 
         .back-btn {
-            position: absolute;
+            position: fixed;
             top: 20px;
             left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
             border: none;
             border-radius: 10px;
             padding: 10px 15px;
@@ -350,10 +389,13 @@
             font-size: 14px;
             transition: all 0.3s ease;
             z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
         }
 
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: white;
+            transform: translateX(-3px);
         }
 
         /* Calendar Styles */
@@ -370,9 +412,10 @@
         }
 
         .calendar-title {
-            font-size: 18px;
+            font-size: 20px;
             color: #333;
             margin-bottom: 15px;
+            font-weight: 600;
         }
 
         .calendar-controls {
@@ -383,13 +426,19 @@
         }
 
         .calendar-btn {
-            padding: 8px 16px;
+            padding: 10px 16px;
             border: 1px solid #667eea;
             background: #667eea;
             color: white;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .calendar-btn.secondary {
@@ -408,13 +457,19 @@
             background: #667eea;
             color: white;
             border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 5px;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #5a6fd8;
+            transform: scale(1.1);
         }
 
         .view-toggles {
@@ -423,11 +478,12 @@
         }
 
         .view-btn {
-            padding: 5px 10px;
+            padding: 8px 12px;
             border: 1px solid #ddd;
             background: white;
             cursor: pointer;
             font-size: 12px;
+            transition: all 0.3s ease;
         }
 
         .view-btn.active {
@@ -443,6 +499,8 @@
             background: #e9ecef;
             margin: 20px;
             border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .calendar-day {
@@ -490,16 +548,17 @@
 
         /* Employee Management Styles */
         .content-header {
-            padding: 20px;
-            background: white;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             border-bottom: 1px solid #e9ecef;
             margin-top: 60px;
         }
 
         .content-title {
-            font-size: 24px;
+            font-size: 28px;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .content-subtitle {
@@ -508,21 +567,25 @@
         }
 
         .action-bar {
-            padding: 20px;
+            padding: 20px 25px;
             background: #f8f9fa;
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 8px 16px;
+            padding: 10px 18px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-primary {
@@ -535,20 +598,29 @@
             color: white;
         }
 
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
         .btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .data-table {
-            width: 100%;
+            width: calc(100% - 50px);
             border-collapse: collapse;
-            margin: 20px;
+            margin: 25px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .data-table th,
         .data-table td {
-            padding: 12px;
+            padding: 15px;
             text-align: left;
             border-bottom: 1px solid #e9ecef;
         }
@@ -557,11 +629,16 @@
             background: #f8f9fa;
             font-weight: 600;
             color: #333;
+            font-size: 14px;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
         }
 
         .status-badge {
-            padding: 4px 8px;
-            border-radius: 12px;
+            padding: 6px 12px;
+            border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
         }
@@ -583,25 +660,31 @@
 
         /* SOP Styles */
         .sop-section {
-            margin: 20px;
+            margin: 20px 25px;
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
         }
 
         .sop-header {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 15px 20px;
+            padding: 18px 25px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .sop-header:hover {
+            background: linear-gradient(135deg, #5a6fd8, #6c42a5);
         }
 
         .sop-content {
-            padding: 20px;
+            padding: 25px;
             display: none;
         }
 
@@ -615,10 +698,11 @@
         }
 
         .sop-steps li {
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #f0f0f0;
             position: relative;
-            padding-left: 30px;
+            padding-left: 35px;
+            line-height: 1.5;
         }
 
         .sop-steps li:before {
@@ -626,11 +710,11 @@
             counter-increment: step-counter;
             position: absolute;
             left: 0;
-            top: 10px;
+            top: 12px;
             background: #667eea;
             color: white;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -650,23 +734,25 @@
 
         .form-label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 600;
             color: #333;
+            font-size: 14px;
         }
 
         .form-control {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
             font-size: 14px;
+            transition: all 0.3s ease;
         }
 
         .form-control:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         /* Modal Styles */
@@ -681,6 +767,7 @@
             justify-content: center;
             align-items: center;
             z-index: 2000;
+            backdrop-filter: blur(5px);
         }
 
         .modal.active {
@@ -689,11 +776,12 @@
 
         .modal-content {
             background: white;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 25px;
             max-width: 90%;
             max-height: 90%;
             overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
 
         .modal-header {
@@ -701,8 +789,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
         }
 
         .close-btn {
@@ -711,6 +799,111 @@
             font-size: 24px;
             cursor: pointer;
             color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            padding: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .stats-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .stats-card h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stats-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .stats-label {
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Professional enhancements */
+        .floating-action {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .floating-action:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.4);
+        }
+
+        .quick-access {
+            position: fixed;
+            top: 50%;
+            right: -200px;
+            transform: translateY(-50%);
+            background: white;
+            border-radius: 12px 0 0 12px;
+            padding: 20px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 998;
+        }
+
+        .quick-access.active {
+            right: 0;
+        }
+
+        .quick-access-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .quick-access-item:hover {
+            background: #f8f9fa;
         }
 
         @keyframes shake {
@@ -735,11 +928,18 @@
 
             .calendar-grid {
                 font-size: 12px;
+                margin: 15px;
             }
 
             .calendar-day {
-                min-height: 50px;
+                min-height: 45px;
                 padding: 8px;
+            }
+
+            .data-table {
+                width: calc(100% - 20px);
+                margin: 15px 10px;
+                font-size: 12px;
             }
         }
     </style>
@@ -766,7 +966,7 @@
                 </form>
                 
                 <p style="margin-top: 20px; color: #666; font-size: 12px;">
-                    Kelola Basis Data ✓ yang Didukung oleh Hibrid
+                    Professional HR Management System ✓ Powered by Advanced Technology
                 </p>
             </div>
         </div>
@@ -778,18 +978,19 @@
         <div id="mainMenu" class="menu-view active">
             <div class="dashboard-header">
                 <div class="header-left">
-                    <button class="menu-toggle">☰</button>
-                    <span class="template-name">Template1</span>
+                    <button class="menu-toggle" onclick="toggleQuickAccess()">☰</button>
+                    <span class="company-name">CLEOPAS HR System</span>
                 </div>
                 <div class="header-right">
                     <div class="notification-badge" onclick="showNotifications()">
-                        <div class="notification-count">1</div>
+                        <div class="notification-count">3</div>
                     </div>
-                    <div class="user-avatar" onclick="toggleUserMenu()">A
+                    <div class="user-avatar" onclick="toggleUserMenu()">AC
                         <div class="dropdown-menu" id="userMenu">
-                            <div class="dropdown-item" onclick="showProfile()">Profil</div>
-                            <div class="dropdown-item" onclick="showSettings()">Pengaturan</div>
-                            <div class="dropdown-item" onclick="logout()">Keluar</div>
+                            <div class="dropdown-item" onclick="showProfile()">👤 Profil Saya</div>
+                            <div class="dropdown-item" onclick="showSettings()">⚙️ Pengaturan</div>
+                            <div class="dropdown-item" onclick="showHelp()">❓ Bantuan</div>
+                            <div class="dropdown-item" onclick="logout()">🚪 Keluar</div>
                         </div>
                     </div>
                 </div>
@@ -797,7 +998,7 @@
 
             <div class="search-container">
                 <div class="search-icon">🔍</div>
-                <input type="text" class="search-bar" placeholder="Search menus..." id="searchInput">
+                <input type="text" class="search-bar" placeholder="Cari fitur atau menu..." id="searchInput">
             </div>
 
             <div class="menu-grid" id="menuGrid">
@@ -843,7 +1044,7 @@
                 
                 <div class="menu-item dashboards" onclick="showPage('dashboards')">
                     <div class="menu-icon">📈</div>
-                    <div class="menu-text">Dashboards</div>
+                    <div class="menu-text">Analytics</div>
                 </div>
                 
                 <div class="menu-item sop" onclick="showPage('sop')">
@@ -853,52 +1054,114 @@
             </div>
         </div>
 
+        <!-- Quick Access Panel -->
+        <div class="quick-access" id="quickAccessPanel">
+            <h4 style="margin-bottom: 15px; color: #333;">Quick Access</h4>
+            <div class="quick-access-item" onclick="quickCheckIn()">
+                <span>⏰</span>
+                <span>Quick Check-In</span>
+            </div>
+            <div class="quick-access-item" onclick="quickTimeOff()">
+                <span>🌞</span>
+                <span>Request Leave</span>
+            </div>
+            <div class="quick-access-item" onclick="quickExpense()">
+                <span>💰</span>
+                <span>Add Expense</span>
+            </div>
+            <div class="quick-access-item" onclick="showPage('calendar')">
+                <span>📅</span>
+                <span>View Calendar</span>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <div class="floating-action" onclick="showQuickActions()">+</div>
+
         <!-- Discuss Page -->
         <div id="discuss" class="page-content">
             <button class="back-btn" onclick="showMainMenu()">← Back</button>
             <div class="dashboard-header">
                 <div class="header-left">
                     <button class="menu-toggle">☰</button>
-                    <span class="template-name">Discuss</span>
+                    <span class="company-name">Discussion Forum</span>
                 </div>
                 <div class="header-right">
                     <div class="notification-badge">
-                        <div class="notification-count">1</div>
+                        <div class="notification-count">3</div>
                     </div>
-                    <div class="user-avatar">A</div>
+                    <div class="user-avatar">AC</div>
                 </div>
             </div>
 
             <div class="content-header">
                 <div class="content-title">Discussion Forum</div>
-                <div class="content-subtitle">Komunikasi dan diskusi tim</div>
+                <div class="content-subtitle">Komunikasi dan kolaborasi tim</div>
             </div>
 
             <div class="action-bar">
-                <button class="btn btn-primary" onclick="createDiscussion()">Buat Diskusi Baru</button>
-                <button class="btn btn-secondary">Filter</button>
+                <button class="btn btn-primary" onclick="createDiscussion()">
+                    <span>💬</span> Buat Diskusi Baru
+                </button>
+                <button class="btn btn-secondary">
+                    <span>🔍</span> Filter
+                </button>
+                <button class="btn btn-success">
+                    <span>📋</span> Categories
+                </button>
             </div>
 
-            <div style="padding: 20px;">
+            <div style="padding: 25px;">
                 <div class="sop-section">
                     <div class="sop-header" onclick="toggleSection(this)">
-                        <span>💬 Tim Development</span>
+                        <span>💬 Tim Development - Project Update</span>
                         <span>▼</span>
                     </div>
                     <div class="sop-content">
-                        <p><strong>Admin:</strong> Update sistem CLEOPAS sudah selesai. Silakan testing fitur baru.</p>
-                        <small style="color: #666;">2 jam yang lalu</small>
+                        <p><strong>Atep Cahya Gumilang (Project Manager):</strong> Update sistem CLEOPAS sudah selesai. Silakan testing fitur baru yang telah ditambahkan:</p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>Enhanced UI/UX design</li>
+                            <li>Quick access panel</li>
+                            <li>Advanced notification system</li>
+                            <li>Mobile responsive improvements</li>
+                        </ul>
+                        <small style="color: #666;">2 jam yang lalu • 5 replies</small>
+                        <div style="margin-top: 10px;">
+                            <button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Reply</button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="sop-section">
                     <div class="sop-header" onclick="toggleSection(this)">
-                        <span>📢 Pengumuman HR</span>
+                        <span>📢 Pengumuman HR - New Policy</span>
                         <span>▼</span>
                     </div>
                     <div class="sop-content">
-                        <p><strong>HR Manager:</strong> Reminder untuk mengisi timesheet minggu ini.</p>
-                        <small style="color: #666;">5 jam yang lalu</small>
+                        <p><strong>Atep Cahya Gumilang (HR Manager):</strong> Kebijakan baru terkait work from home:</p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>WFH maksimal 2 hari per minggu</li>
+                            <li>Wajib koordinasi dengan supervisor</li>
+                            <li>Check-in via sistem tetap wajib</li>
+                        </ul>
+                        <small style="color: #666;">5 jam yang lalu • 12 replies</small>
+                        <div style="margin-top: 10px;">
+                            <button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Reply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sop-section">
+                    <div class="sop-header" onclick="toggleSection(this)">
+                        <span>🎉 General - Team Achievement</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="sop-content">
+                        <p><strong>Atep Cahya Gumilang (CEO):</strong> Selamat untuk tim atas pencapaian target Q3 2025! Bonus performance akan dibagikan bulan depan.</p>
+                        <small style="color: #666;">1 hari yang lalu • 25 replies</small>
+                        <div style="margin-top: 10px;">
+                            <button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Reply</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -910,38 +1173,102 @@
             <div class="dashboard-header">
                 <div class="header-left">
                     <button class="menu-toggle">☰</button>
-                    <span class="template-name">Dashboard</span>
+                    <span class="company-name">Personal Dashboard</span>
                 </div>
                 <div class="header-right">
                     <div class="notification-badge">
-                        <div class="notification-count">1</div>
+                        <div class="notification-count">3</div>
                     </div>
-                    <div class="user-avatar">A</div>
+                    <div class="user-avatar">AC</div>
                 </div>
             </div>
 
             <div class="content-header">
                 <div class="content-title">Dashboard Pribadi</div>
-                <div class="content-subtitle">Ringkasan aktivitas dan informasi penting</div>
+                <div class="content-subtitle">Ringkasan aktivitas dan informasi penting Anda</div>
             </div>
 
-            <div style="padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #667eea; margin-bottom: 10px;">📊 Kehadiran Bulan Ini</h3>
-                    <div style="font-size: 24px; font-weight: bold; color: #333;">22/23</div>
-                    <small style="color: #666;">Hari kerja</small>
+            <div class="stats-grid">
+                <div class="stats-card">
+                    <h3>📊 Kehadiran Bulan Ini</h3>
+                    <div class="stats-value">22/23</div>
+                    <div class="stats-label">Hari kerja hadir</div>
+                    <div style="margin-top: 10px; font-size: 12px; color: #28a745;">
+                        ✓ Performance sangat baik
+                    </div>
                 </div>
 
-                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #e67e22; margin-bottom: 10px;">⏰ Overtime</h3>
-                    <div style="font-size: 24px; font-weight: bold; color: #333;">8 Jam</div>
-                    <small style="color: #666;">Bulan ini</small>
+                <div class="stats-card" style="border-left-color: #e67e22;">
+                    <h3>⏰ Overtime Bulan Ini</h3>
+                    <div class="stats-value">12</div>
+                    <div class="stats-label">Jam lembur</div>
+                    <div style="margin-top: 10px; font-size: 12px; color: #e67e22;">
+                        📈 +3 jam dari bulan lalu
+                    </div>
                 </div>
 
-                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #2ecc71; margin-bottom: 10px;">🌞 Cuti Tersisa</h3>
-                    <div style="font-size: 24px; font-weight: bold; color: #333;">8 Hari</div>
-                    <small style="color: #666;">Dari 12 hari</small>
+                <div class="stats-card" style="border-left-color: #2ecc71;">
+                    <h3>🌞 Cuti Tersisa</h3>
+                    <div class="stats-value">8</div>
+                    <div class="stats-label">Hari tersisa dari 12 hari</div>
+                    <div style="margin-top: 10px; font-size: 12px; color: #2ecc71;">
+                        💡 Rencanakan cuti Anda
+                    </div>
+                </div>
+
+                <div class="stats-card" style="border-left-color: #9b59b6;">
+                    <h3>💰 Expenses Pending</h3>
+                    <div class="stats-value">Rp 250K</div>
+                    <div class="stats-label">Menunggu approval</div>
+                    <div style="margin-top: 10px; font-size: 12px; color: #9b59b6;">
+                        ⏳ 2 item dalam review
+                    </div>
+                </div>
+
+                <div class="stats-card" style="border-left-color: #e74c3c;">
+                    <h3>📋 Task Progress</h3>
+                    <div class="stats-value">85%</div>
+                    <div class="stats-label">Monthly target completion</div>
+                    <div style="margin-top: 10px; font-size: 12px; color: #e74c3c;">
+                        🎯 Hampir mencapai target
+                    </div>
+                </div>
+
+                <div class="stats-card" style="border-left-color: #3498db;">
+                    <h3>📈 Performance Score</h3>
+                    <div class="stats-value">4.8/5</div>
+                    <div class="stats-label">Rating bulan ini</div>
+                    <div style="margin-top: 10px; font-size: 12px; color: #3498db;">
+                        ⭐ Excellent performance
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activities -->
+            <div style="padding: 25px;">
+                <h3 style="margin-bottom: 20px; color: #333;">Recent Activities</h3>
+                <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                        <div>
+                            <div style="font-weight: 600;">✅ Check-in berhasil</div>
+                            <small style="color: #666;">Hari ini, 08:15 WIB</small>
+                        </div>
+                        <span style="color: #28a745;">On time</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                        <div>
+                            <div style="font-weight: 600;">📋 Task completed: UI Review</div>
+                            <small style="color: #666;">Kemarin, 16:30 WIB</small>
+                        </div>
+                        <span style="color: #667eea;">Completed</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;">
+                        <div>
+                            <div style="font-weight: 600;">💰 Expense submitted</div>
+                            <small style="color: #666;">2 hari lalu</small>
+                        </div>
+                        <span style="color: #ffc107;">Pending</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -952,21 +1279,23 @@
             <div class="dashboard-header">
                 <div class="header-left">
                     <button class="menu-toggle">☰</button>
-                    <span class="template-name">Calendar</span>
+                    <span class="company-name">Calendar</span>
                 </div>
                 <div class="header-right">
                     <div class="notification-badge">
-                        <div class="notification-count">1</div>
+                        <div class="notification-count">3</div>
                     </div>
-                    <div class="user-avatar">A</div>
+                    <div class="user-avatar">AC</div>
                 </div>
             </div>
 
             <div class="calendar-header">
-                <div class="calendar-title" id="calendarTitle">Januari 2025</div>
+                <div class="calendar-title" id="calendarTitle">Agustus 2025</div>
                 
                 <div class="calendar-controls">
-                    <button class="calendar-btn" onclick="addEvent()">Tambah Acara</button>
+                    <button class="calendar-btn" onclick="addEvent()">
+                        <span>➕</span> Tambah Acara
+                    </button>
                     <button class="calendar-btn secondary" onclick="previousMonth()">‹ Sebelumnya</button>
                     <button class="calendar-btn secondary" onclick="nextMonth()">Selanjutnya ›</button>
                     <button class="calendar-btn secondary" onclick="goToToday()">Hari Ini</button>
@@ -992,110 +1321,140 @@
             <div class="dashboard-header">
                 <div class="header-left">
                     <button class="menu-toggle">☰</button>
-                    <span class="template-name">Employees</span>
+                    <span class="company-name">Employee Management</span>
                 </div>
                 <div class="header-right">
                     <div class="notification-badge">
-                        <div class="notification-count">1</div>
+                        <div class="notification-count">3</div>
                     </div>
-                    <div class="user-avatar">A</div>
+                    <div class="user-avatar">AC</div>
                 </div>
             </div>
 
             <div class="content-header">
                 <div class="content-title">Manajemen Karyawan</div>
-                <div class="content-subtitle">Kelola data dan informasi karyawan</div>
+                <div class="content-subtitle">Kelola data dan informasi karyawan secara profesional</div>
             </div>
 
             <div class="action-bar">
-                <button class="btn btn-primary" onclick="addEmployee()">Tambah Karyawan</button>
-                <button class="btn btn-secondary">Export</button>
-                <button class="btn btn-secondary">Filter</button>
+                <button class="btn btn-primary" onclick="addEmployee()">
+                    <span>👤</span> Tambah Karyawan
+                </button>
+                <button class="btn btn-secondary">
+                    <span>📊</span> Export Data
+                </button>
+                <button class="btn btn-secondary">
+                    <span>🔍</span> Advanced Filter
+                </button>
+                <button class="btn btn-success">
+                    <span>📧</span> Bulk Actions
+                </button>
             </div>
 
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Nama</th>
+                        <th>Nama Lengkap</th>
                         <th>Posisi</th>
                         <th>Departemen</th>
                         <th>Status</th>
+                        <th>Performance</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody id="employeeTable">
                     <tr>
-                        <td>Ahmad Rizki</td>
-                        <td>Software Developer</td>
-                        <td>IT</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 32px; height: 32px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">AC</div>
+                                <div>
+                                    <div style="font-weight: 600;">Atep Cahya Gumilang</div>
+                                    <small style="color: #666;">atep.gumilang@company.com</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>CEO & Founder</td>
+                        <td>Management</td>
                         <td><span class="status-badge status-active">Aktif</span></td>
+                        <td>⭐⭐⭐⭐⭐</td>
                         <td>
                             <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="editEmployee(1)">Edit</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>Sarah Putri</td>
-                        <td>UI/UX Designer</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 32px; height: 32px; background: #e67e22; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">SP</div>
+                                <div>
+                                    <div style="font-weight: 600;">Sarah Putri</div>
+                                    <small style="color: #666;">sarah.putri@company.com</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Senior UI/UX Designer</td>
                         <td>Design</td>
                         <td><span class="status-badge status-active">Aktif</span></td>
+                        <td>⭐⭐⭐⭐</td>
                         <td>
                             <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="editEmployee(2)">Edit</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>Budi Santoso</td>
-                        <td>Project Manager</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 32px; height: 32px; background: #2ecc71; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">BS</div>
+                                <div>
+                                    <div style="font-weight: 600;">Budi Santoso</div>
+                                    <small style="color: #666;">budi.santoso@company.com</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Senior Project Manager</td>
                         <td>Management</td>
                         <td><span class="status-badge status-active">Aktif</span></td>
+                        <td>⭐⭐⭐⭐⭐</td>
                         <td>
                             <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="editEmployee(3)">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 32px; height: 32px; background: #9b59b6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">DR</div>
+                                <div>
+                                    <div style="font-weight: 600;">Dewi Rahmawati</div>
+                                    <small style="color: #666;">dewi.rahmawati@company.com</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>HR Specialist</td>
+                        <td>Human Resources</td>
+                        <td><span class="status-badge status-active">Aktif</span></td>
+                        <td>⭐⭐⭐⭐</td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="editEmployee(4)">Edit</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Attendances Page -->
-        <div id="attendances" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
-            <div class="dashboard-header">
-                <div class="header-left">
-                    <button class="menu-toggle">☰</button>
-                    <span class="template-name">Attendances</span>
-                </div>
-                <div class="header-right">
-                    <div class="notification-badge">
-                        <div class="notification-count">1</div>
+ grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                        <div style="color: #28a745; font-size: 24px; font-weight: bold;" id="checkInTime">08:15</div>
+                        <div style="color: #666; font-size: 12px;">Check In Time</div>
                     </div>
-                    <div class="user-avatar">A</div>
-                </div>
-            </div>
-
-            <div class="content-header">
-                <div class="content-title">Absensi Karyawan</div>
-                <div class="content-subtitle">Monitoring kehadiran dan keterlambatan</div>
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-primary" onclick="checkIn()">Check In</button>
-                <button class="btn btn-secondary" onclick="checkOut()">Check Out</button>
-                <button class="btn btn-secondary">Export</button>
-            </div>
-
-            <div style="padding: 20px; background: #f8f9fa; margin: 20px; border-radius: 8px;">
-                <h3>Status Kehadiran Hari Ini</h3>
-                <div style="margin-top: 15px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <span>Check In:</span>
-                        <span id="checkInTime">08:15 WIB</span>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                        <div style="color: #dc3545; font-size: 24px; font-weight: bold;" id="checkOutTime">-</div>
+                        <div style="color: #666; font-size: 12px;">Check Out Time</div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <span>Check Out:</span>
-                        <span id="checkOutTime">-</span>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                        <div style="color: #667eea; font-size: 24px; font-weight: bold;" id="totalHours">-</div>
+                        <div style="color: #666; font-size: 12px;">Total Working Hours</div>
                     </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>Total Jam:</span>
-                        <span id="totalHours">-</span>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                        <div style="color: #ffc107; font-size: 24px; font-weight: bold;">On Time</div>
+                        <div style="color: #666; font-size: 12px;">Status</div>
                     </div>
                 </div>
             </div>
@@ -1107,7 +1466,9 @@
                         <th>Check In</th>
                         <th>Check Out</th>
                         <th>Total Jam</th>
+                        <th>Break Time</th>
                         <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1116,1081 +1477,45 @@
                         <td>08:15</td>
                         <td>-</td>
                         <td>-</td>
+                        <td>-</td>
                         <td><span class="status-badge status-active">Hadir</span></td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">View</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>13 Agustus 2025</td>
                         <td>08:05</td>
                         <td>17:30</td>
-                        <td>9.5 jam</td>
+                        <td>9.0 jam</td>
+                        <td>0.5 jam</td>
                         <td><span class="status-badge status-active">Hadir</span></td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">View</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>12 Agustus 2025</td>
                         <td>08:30</td>
                         <td>17:15</td>
-                        <td>8.75 jam</td>
+                        <td>8.25 jam</td>
+                        <td>0.5 jam</td>
                         <td><span class="status-badge status-pending">Terlambat</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Overtime Page -->
-        <div id="overtime" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
-            <div class="dashboard-header">
-                <div class="header-left">
-                    <button class="menu-toggle">☰</button>
-                    <span class="template-name">Overtime</span>
-                </div>
-                <div class="header-right">
-                    <div class="notification-badge">
-                        <div class="notification-count">1</div>
-                    </div>
-                    <div class="user-avatar">A</div>
-                </div>
-            </div>
-
-            <div class="content-header">
-                <div class="content-title">Lembur Karyawan</div>
-                <div class="content-subtitle">Pengajuan dan monitoring overtime</div>
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-primary" onclick="requestOvertime()">Ajukan Lembur</button>
-                <button class="btn btn-secondary">Export</button>
-            </div>
-
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Tanggal</th>
-                        <th>Jam Mulai</th>
-                        <th>Jam Selesai</th>
-                        <th>Total Jam</th>
-                        <th>Keterangan</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>12 Agustus 2025</td>
-                        <td>18:00</td>
-                        <td>21:00</td>
-                        <td>3 jam</td>
-                        <td>Menyelesaikan project deadline</td>
-                        <td><span class="status-badge status-active">Disetujui</span></td>
-                    </tr>
-                    <tr>
-                        <td>10 Agustus 2025</td>
-                        <td>18:30</td>
-                        <td>20:30</td>
-                        <td>2 jam</td>
-                        <td>Debugging sistem</td>
-                        <td><span class="status-badge status-pending">Menunggu</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Time Off Page -->
-        <div id="timeoff" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
-            <div class="dashboard-header">
-                <div class="header-left">
-                    <button class="menu-toggle">☰</button>
-                    <span class="template-name">Time Off</span>
-                </div>
-                <div class="header-right">
-                    <div class="notification-badge">
-                        <div class="notification-count">1</div>
-                    </div>
-                    <div class="user-avatar">A</div>
-                </div>
-            </div>
-
-            <div class="content-header">
-                <div class="content-title">Cuti & Izin</div>
-                <div class="content-subtitle">Pengajuan dan monitoring time off</div>
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-primary" onclick="requestTimeOff()">Ajukan Cuti/Izin</button>
-                <button class="btn btn-secondary">Sisa Cuti: 8 hari</button>
-            </div>
-
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Jenis</th>
-                        <th>Tanggal Mulai</th>
-                        <th>Tanggal Selesai</th>
-                        <th>Durasi</th>
-                        <th>Keterangan</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Cuti Tahunan</td>
-                        <td>20 Agustus 2025</td>
-                        <td>22 Agustus 2025</td>
-                        <td>3 hari</td>
-                        <td>Liburan keluarga</td>
-                        <td><span class="status-badge status-pending">Menunggu</span></td>
-                    </tr>
-                    <tr>
-                        <td>Izin Sakit</td>
-                        <td>05 Agustus 2025</td>
-                        <td>05 Agustus 2025</td>
-                        <td>1 hari</td>
-                        <td>Demam</td>
-                        <td><span class="status-badge status-active">Disetujui</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Expenses Page -->
-        <div id="expenses" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
-            <div class="dashboard-header">
-                <div class="header-left">
-                    <button class="menu-toggle">☰</button>
-                    <span class="template-name">Expenses</span>
-                </div>
-                <div class="header-right">
-                    <div class="notification-badge">
-                        <div class="notification-count">1</div>
-                    </div>
-                    <div class="user-avatar">A</div>
-                </div>
-            </div>
-
-            <div class="content-header">
-                <div class="content-title">Pengeluaran</div>
-                <div class="content-subtitle">Manajemen reimbursement dan expense</div>
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-primary" onclick="addExpense()">Tambah Pengeluaran</button>
-                <button class="btn btn-secondary">Export</button>
-            </div>
-
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Tanggal</th>
-                        <th>Kategori</th>
-                        <th>Deskripsi</th>
-                        <th>Jumlah</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>12 Agustus 2025</td>
-                        <td>Transport</td>
-                        <td>Taxi meeting client</td>
-                        <td>Rp 50,000</td>
-                        <td><span class="status-badge status-pending">Review</span></td>
                         <td>
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">Edit</button>
+                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">View</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>10 Agustus 2025</td>
-                        <td>Makan</td>
-                        <td>Makan siang meeting</td>
-                        <td>Rp 75,000</td>
-                        <td><span class="status-badge status-active">Disetujui</span></td>
+                        <td>11 Agustus 2025</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><span class="status-badge status-inactive">Cuti</span></td>
                         <td>
                             <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">View</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-
-        <!-- Dashboards Page -->
-        <div id="dashboards" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
-            <div class="dashboard-header">
-                <div class="header-left">
-                    <button class="menu-toggle">☰</button>
-                    <span class="template-name">Analytics</span>
-                </div>
-                <div class="header-right">
-                    <div class="notification-badge">
-                        <div class="notification-count">1</div>
-                    </div>
-                    <div class="user-avatar">A</div>
-                </div>
-            </div>
-
-            <div class="content-header">
-                <div class="content-title">Dashboard Analytics</div>
-                <div class="content-subtitle">Laporan dan analisis data HR</div>
-            </div>
-
-            <div style="padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #667eea; margin-bottom: 15px;">📊 Kehadiran Tim</h3>
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                            <span>Hadir:</span>
-                            <span style="color: #28a745; font-weight: bold;">85%</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                            <span>Izin:</span>
-                            <span style="color: #ffc107; font-weight: bold;">10%</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between;">
-                            <span>Sakit:</span>
-                            <span style="color: #dc3545; font-weight: bold;">5%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #e67e22; margin-bottom: 15px;">⏱️ Overtime Summary</h3>
-                    <div style="font-size: 32px; font-weight: bold; color: #e67e22; text-align: center;">142</div>
-                    <div style="text-align: center; color: #666; font-size: 14px;">Total jam bulan ini</div>
-                </div>
-
-                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    <h3 style="color: #2ecc71; margin-bottom: 15px;">💰 Expenses</h3>
-                    <div style="font-size: 28px; font-weight: bold; color: #2ecc71; text-align: center;">Rp 2.5M</div>
-                    <div style="text-align: center; color: #666; font-size: 14px;">Total pengeluaran bulan ini</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SOP Page -->
-        <div id="sop" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
-            <div class="dashboard-header">
-                <div class="header-left">
-                    <button class="menu-toggle">☰</button>
-                    <span class="template-name">SOP</span>
-                </div>
-                <div class="header-right">
-                    <div class="notification-badge">
-                        <div class="notification-count">1</div>
-                    </div>
-                    <div class="user-avatar">A</div>
-                </div>
-            </div>
-
-            <div class="content-header">
-                <div class="content-title">Standard Operating Procedures</div>
-                <div class="content-subtitle">Panduan dan prosedur kerja perusahaan</div>
-            </div>
-
-            <div style="padding: 20px;">
-                <div class="sop-section">
-                    <div class="sop-header" onclick="toggleSection(this)">
-                        <span>📋 Prosedur Absensi</span>
-                        <span>▼</span>
-                    </div>
-                    <div class="sop-content">
-                        <ol class="sop-steps">
-                            <li>Login ke aplikasi CLEOPAS menggunakan akun karyawan</li>
-                            <li>Pilih menu "Attendances" dari dashboard utama</li>
-                            <li>Klik tombol "Check In" saat tiba di kantor (maksimal 08:30 WIB)</li>
-                            <li>Pastikan lokasi GPS aktif untuk verifikasi kehadiran</li>
-                            <li>Klik tombol "Check Out" saat pulang kerja</li>
-                            <li>Sistem akan otomatis menghitung total jam kerja</li>
-                        </ol>
-                        <p><strong>Catatan:</strong> Keterlambatan lebih dari 15 menit akan dicatat sebagai terlambat.</p>
-                    </div>
-                </div>
-
-                <div class="sop-section">
-                    <div class="sop-header" onclick="toggleSection(this)">
-                        <span>🌞 Prosedur Pengajuan Cuti</span>
-                        <span>▼</span>
-                    </div>
-                    <div class="sop-content">
-                        <ol class="sop-steps">
-                            <li>Buka menu "Time Off" dari dashboard</li>
-                            <li>Klik tombol "Ajukan Cuti/Izin"</li>
-                            <li>Pilih jenis cuti (Tahunan, Sakit, Darurat)</li>
-                            <li>Tentukan tanggal mulai dan selesai cuti</li>
-                            <li>Isi alasan/keterangan cuti dengan jelas</li>
-                            <li>Upload dokumen pendukung jika diperlukan</li>
-                            <li>Klik "Submit" untuk mengirim pengajuan</li>
-                            <li>Tunggu persetujuan dari supervisor/HR</li>
-                        </ol>
-                        <p><strong>Ketentuan:</strong></p>
-                        <ul>
-                            <li>Cuti tahunan: maksimal 12 hari per tahun</li>
-                            <li>Pengajuan minimal 3 hari sebelum tanggal cuti</li>
-                            <li>Cuti darurat dapat diajukan H-1</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="sop-section">
-                    <div class="sop-header" onclick="toggleSection(this)">
-                        <span>⏰ Prosedur Lembur</span>
-                        <span>▼</span>
-                    </div>
-                    <div class="sop-content">
-                        <ol class="sop-steps">
-                            <li>Buka menu "Overtime" dari dashboard</li>
-                            <li>Klik tombol "Ajukan Lembur"</li>
-                            <li>Isi tanggal dan estimasi jam lembur</li>
-                            <li>Berikan alasan dan deskripsi pekerjaan</li>
-                            <li>Submit pengajuan untuk persetujuan supervisor</li>
-                            <li>Mulai lembur setelah mendapat persetujuan</li>
-                            <li>Check in/out lembur melalui sistem</li>
-                        </ol>
-                        <p><strong>Ketentuan:</strong></p>
-                        <ul>
-                            <li>Maksimal 4 jam lembur per hari</li>
-                            <li>Maksimal 14 jam lembur per minggu</li>
-                            <li>Rate lembur: 1.5x gaji pokok per jam</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="sop-section">
-                    <div class="sop-header" onclick="toggleSection(this)">
-                        <span>💰 Prosedur Reimbursement</span>
-                        <span>▼</span>
-                    </div>
-                    <div class="sop-content">
-                        <ol class="sop-steps">
-                            <li>Simpan semua bukti pengeluaran (struk, invoice)</li>
-                            <li>Buka menu "Expenses" dari dashboard</li>
-                            <li>Klik "Tambah Pengeluaran"</li>
-                            <li>Pilih kategori pengeluaran yang sesuai</li>
-                            <li>Masukkan nominal dan deskripsi</li>
-                            <li>Upload foto/scan bukti pengeluaran</li>
-                            <li>Submit untuk review finance</li>
-                            <li>Reimbursement akan diproses maksimal 7 hari kerja</li>
-                        </ol>
-                        <p><strong>Kategori yang dapat di-reimburse:</strong></p>
-                        <ul>
-                            <li>Transport untuk keperluan kerja</li>
-                            <li>Makan siang meeting/lembur</li>
-                            <li>Komunikasi (pulsa/internet untuk kerja)</li>
-                            <li>Supplies kantor yang mendesak</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="sop-section">
-                    <div class="sop-header" onclick="toggleSection(this)">
-                        <span>🚨 Prosedur Emergency</span>
-                        <span>▼</span>
-                    </div>
-                    <div class="sop-content">
-                        <ol class="sop-steps">
-                            <li>Hubungi security kantor: ext. 911</li>
-                            <li>Hubungi emergency services jika diperlukan</li>
-                            <li>Informasikan ke HR dan supervisor immediately</li>
-                            <li>Ikuti instruksi evacuation plan yang tersedia</li>
-                            <li>Kumpul di titik assembly yang sudah ditentukan</li>
-                            <li>Jangan kembali ke gedung sebelum ada all-clear</li>
-                        </ol>
-                        <p><strong>Kontak Emergency:</strong></p>
-                        <ul>
-                            <li>Security: ext. 911</li>
-                            <li>HR Emergency: 0811-2345-678</li>
-                            <li>Medical Emergency: 119</li>
-                            <li>Fire Department: 113</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for Forms -->
-    <div class="modal" id="genericModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">Form</h3>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-            <div id="modalBody">
-                <!-- Dynamic content will be inserted here -->
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Global variables
-        let currentDate = new Date();
-        let currentView = 'month';
-        let events = {
-            '2025-08-14': ['Meeting dengan Client', 'Review Project'],
-            '2025-08-15': ['Training Security'],
-            '2025-08-20': ['Deadline Project A'],
-            '2025-01-15': ['Team Building']
-        };
-
-        // Login functionality
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-            
-            if (username === 'TEST' && password === '12345') {
-                errorMessage.style.display = 'none';
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('dashboardPage').classList.add('active');
-                showMainMenu();
-            } else {
-                errorMessage.style.display = 'block';
-                const loginContainer = document.querySelector('.login-container');
-                loginContainer.style.animation = 'shake 0.5s ease-in-out';
-                setTimeout(() => loginContainer.style.animation = '', 500);
-            }
-        });
-
-        // Navigation functions
-        function showMainMenu() {
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById('mainMenu').style.display = 'block';
-        }
-
-        function showPage(pageId) {
-            document.getElementById('mainMenu').style.display = 'none';
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            
-            // Initialize page-specific content
-            if (pageId === 'calendar') {
-                renderCalendar();
-            }
-        }
-
-        function logout() {
-            document.getElementById('dashboardPage').classList.remove('active');
-            document.getElementById('loginPage').style.display = 'flex';
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('errorMessage').style.display = 'none';
-        }
-
-        // User menu functionality
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('active');
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.user-avatar')) {
-                document.getElementById('userMenu').classList.remove('active');
-            }
-        });
-
-        // Calendar functionality
-        function renderCalendar() {
-            const grid = document.getElementById('calendarGrid');
-            const title = document.getElementById('calendarTitle');
-            
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            
-            // Update title
-            const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-            title.textContent = `${monthNames[month]} ${year}`;
-            
-            // Clear grid
-            grid.innerHTML = '';
-            
-            // Add day headers
-            const dayHeaders = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
-            dayHeaders.forEach(day => {
-                const header = document.createElement('div');
-                header.className = 'calendar-day';
-                header.style.background = '#f8f9fa';
-                header.style.fontWeight = 'bold';
-                header.style.color = '#666';
-                header.innerHTML = `<div class="day-number">${day}</div>`;
-                grid.appendChild(header);
-            });
-            
-            // Get first day of month and number of days
-            const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
-            const daysInMonth = lastDay.getDate();
-            const startingDayOfWeek = firstDay.getDay();
-            
-            // Add empty cells for days before month starts
-            for (let i = 0; i < startingDayOfWeek; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day other-month';
-                const prevMonth = new Date(year, month - 1, 0);
-                const dayNum = prevMonth.getDate() - startingDayOfWeek + i + 1;
-                emptyDay.innerHTML = `<div class="day-number">${dayNum}</div>`;
-                grid.appendChild(emptyDay);
-            }
-            
-            // Add days of current month
-            const today = new Date();
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day';
-                
-                // Check if it's today
-                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
-                    dayElement.classList.add('today');
-                }
-                
-                // Create date key for events
-                const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                
-                let dayContent = `<div class="day-number">${day}</div>`;
-                if (events[dateKey]) {
-                    dayContent += '<div class="day-events">';
-                    events[dateKey].forEach(event => {
-                        dayContent += `<div class="calendar-event">${event}</div>`;
-                    });
-                    dayContent += '</div>';
-                }
-                
-                dayElement.innerHTML = dayContent;
-                dayElement.onclick = () => selectDate(dateKey);
-                grid.appendChild(dayElement);
-            }
-            
-            // Add remaining days from next month
-            const remainingCells = 42 - (startingDayOfWeek + daysInMonth);
-            for (let day = 1; day <= remainingCells; day++) {
-                const nextMonthDay = document.createElement('div');
-                nextMonthDay.className = 'calendar-day other-month';
-                nextMonthDay.innerHTML = `<div class="day-number">${day}</div>`;
-                grid.appendChild(nextMonthDay);
-            }
-        }
-
-        function previousMonth() {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendar();
-        }
-
-        function nextMonth() {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendar();
-        }
-
-        function goToToday() {
-            currentDate = new Date();
-            renderCalendar();
-        }
-
-        function setView(view) {
-            currentView = view;
-            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            if (view === 'month') {
-                renderCalendar();
-            }
-        }
-
-        function selectDate(dateKey) {
-            const date = new Date(dateKey);
-            const formattedDate = date.toLocaleDateString('id-ID', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            
-            showModal('Detail Tanggal', `
-                <h4>${formattedDate}</h4>
-                ${events[dateKey] ? `
-                    <h5>Acara:</h5>
-                    <ul>
-                        ${events[dateKey].map(event => `<li>${event}</li>`).join('')}
-                    </ul>
-                ` : '<p>Tidak ada acara pada tanggal ini.</p>'}
-                <button class="btn btn-primary" onclick="addEventToDate('${dateKey}')">Tambah Acara</button>
-            `);
-        }
-
-        function addEvent() {
-            const today = new Date().toISOString().split('T')[0];
-            showModal('Tambah Acara Baru', `
-                <form id="eventForm">
-                    <div class="form-group">
-                        <label class="form-label">Tanggal:</label>
-                        <input type="date" class="form-control" id="eventDate" value="${today}" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Judul Acara:</label>
-                        <input type="text" class="form-control" id="eventTitle" placeholder="Masukkan judul acara" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Waktu:</label>
-                        <input type="time" class="form-control" id="eventTime">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Deskripsi:</label>
-                        <textarea class="form-control" id="eventDescription" rows="3" placeholder="Deskripsi acara (opsional)"></textarea>
-                    </div>
-                    <div style="text-align: right; margin-top: 20px;">
-                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan Acara</button>
-                    </div>
-                </form>
-            `);
-            
-            document.getElementById('eventForm').onsubmit = function(e) {
-                e.preventDefault();
-                const date = document.getElementById('eventDate').value;
-                const title = document.getElementById('eventTitle').value;
-                const time = document.getElementById('eventTime').value;
-                
-                let eventText = title;
-                if (time) {
-                    eventText = `${time} - ${title}`;
-                }
-                
-                if (!events[date]) {
-                    events[date] = [];
-                }
-                events[date].push(eventText);
-                
-                closeModal();
-                renderCalendar();
-                alert('Acara berhasil ditambahkan!');
-            };
-        }
-
-        function addEventToDate(dateKey) {
-            closeModal();
-            setTimeout(() => {
-                showModal('Tambah Acara', `
-                    <form id="quickEventForm">
-                        <div class="form-group">
-                            <label class="form-label">Tanggal: ${dateKey}</label>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Judul Acara:</label>
-                            <input type="text" class="form-control" id="quickEventTitle" placeholder="Masukkan judul acara" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Waktu:</label>
-                            <input type="time" class="form-control" id="quickEventTime">
-                        </div>
-                        <div style="text-align: right; margin-top: 20px;">
-                            <button type="button" class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                `);
-                
-                document.getElementById('quickEventForm').onsubmit = function(e) {
-                    e.preventDefault();
-                    const title = document.getElementById('quickEventTitle').value;
-                    const time = document.getElementById('quickEventTime').value;
-                    
-                    let eventText = title;
-                    if (time) {
-                        eventText = `${time} - ${title}`;
-                    }
-                    
-                    if (!events[dateKey]) {
-                        events[dateKey] = [];
-                    }
-                    events[dateKey].push(eventText);
-                    
-                    closeModal();
-                    renderCalendar();
-                    alert('Acara berhasil ditambahkan!');
-                };
-            }, 100);
-        }
-
-        // Employee Management Functions
-        function addEmployee() {
-            showModal('Tambah Karyawan Baru', `
-                <form id="employeeForm">
-                    <div class="form-group">
-                        <label class="form-label">Nama Lengkap:</label>
-                        <input type="text" class="form-control" id="empName" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="empEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Posisi:</label>
-                        <input type="text" class="form-control" id="empPosition" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Departemen:</label>
-                        <select class="form-control" id="empDepartment" required>
-                            <option value="">Pilih Departemen</option>
-                            <option value="IT">IT</option>
-                            <option value="HR">HR</option>
-                            <option value="Finance">Finance</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Operations">Operations</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Tanggal Mulai:</label>
-                        <input type="date" class="form-control" id="empStartDate" required>
-                    </div>
-                    <div style="text-align: right; margin-top: 20px;">
-                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            `);
-            
-            document.getElementById('employeeForm').onsubmit = function(e) {
-                e.preventDefault();
-                // Here you would typically send data to server
-                closeModal();
-                alert('Karyawan berhasil ditambahkan!');
-            };
-        }
-
-        function editEmployee(id) {
-            showModal('Edit Karyawan', `
-                <form id="editEmployeeForm">
-                    <div class="form-group">
-                        <label class="form-label">Nama Lengkap:</label>
-                        <input type="text" class="form-control" value="Ahmad Rizki" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email:</label>
-                        <input type="email" class="form-control" value="ahmad.rizki@company.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Posisi:</label>
-                        <input type="text" class="form-control" value="Software Developer" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Status:</label>
-                        <select class="form-control" required>
-                            <option value="active" selected>Aktif</option>
-                            <option value="inactive">Non-aktif</option>
-                            <option value="suspended">Suspended</option>
-                        </select>
-                    </div>
-                    <div style="text-align: right; margin-top: 20px;">
-                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            `);
-            
-            document.getElementById('editEmployeeForm').onsubmit = function(e) {
-                e.preventDefault();
-                closeModal();
-                alert('Data karyawan berhasil diupdate!');
-            };
-        }
-
-        // Attendance Functions
-        function checkIn() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'});
-            document.getElementById('checkInTime').textContent = timeString + ' WIB';
-            alert(`Check in berhasil pada ${timeString} WIB`);
-        }
-
-        function checkOut() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'});
-            document.getElementById('checkOutTime').textContent = timeString + ' WIB';
-            
-            // Calculate total hours (simplified)
-            const checkIn = document.getElementById('checkInTime').textContent;
-            if (checkIn !== '-') {
-                document.getElementById('totalHours').textContent = '8.5 jam';
-            }
-            
-            alert(`Check out berhasil pada ${timeString} WIB`);
-        }
-
-        // Overtime Functions
-        function requestOvertime() {
-            showModal('Pengajuan Lembur', `
-                <form id="overtimeForm">
-                    <div class="form-group">
-                        <label class="form-label">Tanggal:</label>
-                        <input type="date" class="form-control" id="overtimeDate" value="${new Date().toISOString().split('T')[0]}" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Jam Mulai:</label>
-                        <input type="time" class="form-control" id="overtimeStart" value="18:00" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Estimasi Jam Selesai:</label>
-                        <input type="time" class="form-control" id="overtimeEnd" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Alasan/Keterangan:</label>
-                        <textarea class="form-control" id="overtimeReason" rows="4" placeholder="Jelaskan alasan lembur dan pekerjaan yang akan dilakukan" required></textarea>
-                    </div>
-                    <div style="text-align: right; margin-top: 20px;">
-                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Ajukan</button>
-                    </div>
-                </form>
-            `);
-            
-            document.getElementById('overtimeForm').onsubmit = function(e) {
-                e.preventDefault();
-                closeModal();
-                alert('Pengajuan lembur berhasil dikirim dan menunggu persetujuan!');
-            };
-        }
-
-        // Time Off Functions
-        function requestTimeOff() {
-            showModal('Pengajuan Cuti/Izin', `
-                <form id="timeoffForm">
-                    <div class="form-group">
-                        <label class="form-label">Jenis:</label>
-                        <select class="form-control" id="timeoffType" required>
-                            <option value="">Pilih Jenis</option>
-                            <option value="annual">Cuti Tahunan</option>
-                            <option value="sick">Izin Sakit</option>
-                            <option value="personal">Izin Pribadi</option>
-                            <option value="emergency">Cuti Darurat</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Tanggal Mulai:</label>
-                        <input type="date" class="form-control" id="timeoffStart" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Tanggal Selesai:</label>
-                        <input type="date" class="form-control" id="timeoffEnd" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Alasan/Keterangan:</label>
-                        <textarea class="form-control" id="timeoffReason" rows="4" placeholder="Jelaskan alasan pengajuan cuti/izin" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Upload Dokumen (jika perlu):</label>
-                        <input type="file" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
-                    </div>
-                    <div style="text-align: right; margin-top: 20px;">
-                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Ajukan</button>
-                    </div>
-                </form>
-            `);
-            
-            document.getElementById('timeoffForm').onsubmit = function(e) {
-                e.preventDefault();
-                closeModal();
-                alert('Pengajuan cuti/izin berhasil dikirim dan menunggu persetujuan!');
-            };
-        }
-
-        // Expense Functions
-        function addExpense() {
-            showModal('Tambah Pengeluaran', `
-                <form id="expenseForm">
-                    <div class="form-group">
-                        <label class="form-label">Tanggal:</label>
-                        <input type="date" class="form-control" id="expenseDate" value="${new Date().toISOString().split('T')[0]}" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Kategori:</label>
-                        <select class="form-control" id="expenseCategory" required>
-                            <option value="">Pilih Kategori</option>
-                            <option value="transport">Transport</option>
-                            <option value="meal">Makan</option>
-                            <option value="communication">Komunikasi</option>
-                            <option value="supplies">Supplies</option>
-                            <option value="other">Lainnya</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Deskripsi:</label>
-                        <input type="text" class="form-control" id="expenseDescription" placeholder="Deskripsi pengeluaran" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Jumlah (Rp):</label>
-                        <input type="number" class="form-control" id="expenseAmount" placeholder="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Upload Struk/Bukti:</label>
-                        <input type="file" class="form-control" accept=".jpg,.jpeg,.png,.pdf" required>
-                    </div>
-                    <div style="text-align: right; margin-top: 20px;">
-                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            `);
-            
-            document.getElementById('expenseForm').onsubmit = function(e) {
-                e.preventDefault();
-                closeModal();
-                alert('Pengeluaran berhasil ditambahkan dan akan diproses untuk reimbursement!');
-            };
-        }
-
-        // Discussion Functions
-        function createDiscussion() {
-            showModal('Buat Diskusi Baru', `
-                <form id="discussionForm">
-                    <div class="form-group">
-                        <label class="form-label">Judul Diskusi:</label>
-                        <input type="text" class="form-control" id="discussionTitle" placeholder="Masukkan judul diskusi" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Kategori:</label>
-                        <select class="form-control" id="discussionCategory" required>
-                            <option value="">Pilih Kategori</option>
-                            <option value="general">General</option>
-                            <option value="project">Project</option>
-                            <option value="announcement">Pengumuman</option>
-                            <option value="help">Bantuan</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Pesan:</label>
-                        <textarea class="form-control" id="discussionMessage" rows="5" placeholder="Tulis pesan diskusi..." required></textarea>
-                    </div>
-                    <div style="text-align: right; margin-top: 20px;">
-                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Posting</button>
-                    </div>
-                </form>
-            `);
-            
-            document.getElementById('discussionForm').onsubmit = function(e) {
-                e.preventDefault();
-                closeModal();
-                alert('Diskusi berhasil dibuat!');
-            };
-        }
-
-        // SOP Functions
-        function toggleSection(header) {
-            const content = header.nextElementSibling;
-            const arrow = header.querySelector('span:last-child');
-            
-            if (content.classList.contains('active')) {
-                content.classList.remove('active');
-                arrow.textContent = '▼';
-            } else {
-                content.classList.add('active');
-                arrow.textContent = '▲';
-            }
-        }
-
-        // Modal Functions
-        function showModal(title, body) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalBody').innerHTML = body;
-            document.getElementById('genericModal').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('genericModal').classList.remove('active');
-        }
-
-        // Notification Functions
-        function showNotifications() {
-            showModal('Notifikasi', `
-                <div style="max-height: 400px; overflow-y: auto;">
-                    <div style="padding: 15px; border-bottom: 1px solid #eee;">
-                        <div style="font-weight: bold;">Pengajuan lembur disetujui</div>
-                        <div style="color: #666; font-size: 12px;">2 jam yang lalu</div>
-                        <div style="margin-top: 5px; font-size: 14px;">Lembur tanggal 12 Agustus 2025 telah disetujui supervisor.</div>
-                    </div>
-                    <div style="padding: 15px; border-bottom: 1px solid #eee;">
-                        <div style="font-weight: bold;">Reminder: Update timesheet</div>
-                        <div style="color: #666; font-size: 12px;">5 jam yang lalu</div>
-                        <div style="margin-top: 5px; font-size: 14px;">Jangan lupa untuk mengisi timesheet minggu ini.</div>
-                    </div>
-                    <div style="padding: 15px;">
-                        <div style="font-weight: bold;">Sistem maintenance</div>
-                        <div style="color: #666; font-size: 12px;">1 hari yang lalu</div>
-                        <div style="margin-top: 5px; font-size: 14px;">Sistem akan maintenance pada Sabtu malam (19:00-21:00).</div>
-                    </div>
-                </div>
-            `);
-        }
-
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const menuItems = document.querySelectorAll('.menu-item');
-            
-            menuItems.forEach(item => {
-                const text = item.querySelector('.menu-text').textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = searchTerm === '' ? 'flex' : 'none';
-                }
-            });
-        });
-
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add shake animation for wrong login
-            const shakeStyle = document.createElement('style');
-            shakeStyle.textContent = `
-                @keyframes shake {
-                    0%, 100% { transform: translateX(0); }
-                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-                    20%, 40%, 60%, 80% { transform: translateX(5px); }
-                }
-            `;
-            document.head.appendChild(shakeStyle);
-        });
-
-        // Profile and Settings functions (placeholder)
-        function showProfile() {
-            showModal('Profil Saya', `
-                <div style="text-align: center; padding: 20px;">
-                    <div style="width: 80px; height: 80px; background: #667eea; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px;">A</div>
-                    <h3>Ahmad Tester</h3>
-                    <p style="color: #666;">Software Developer</p>
-                    <p style="color: #666;">ahmad.tester@company.com</p>
-                    <button class="btn btn-primary" onclick="closeModal()">OK</button>
-                </div>
-            `);
-        }
-
-        function showSettings() {
-            showModal('Pengaturan', `
-                <div>
-                    <div style="padding: 15px; border-bottom: 1px solid #eee; cursor: pointer;" onclick="alert('Fitur akan segera hadir!')">
-                        🔔 Notifikasi
-                    </div>
-                    <div style="padding: 15px; border-bottom: 1px solid #eee; cursor: pointer;" onclick="alert('Fitur akan segera hadir!')">
-                        🔒 Keamanan
-                    </div>
-                    <div style="padding: 15px; border-bottom: 1px solid #eee; cursor: pointer;" onclick="alert('Fitur akan segera hadir!')">
-                        🌐 Bahasa
-                    </div>
-                    <div style="padding: 15px; cursor: pointer;" onclick="alert('Fitur akan segera hadir!')">
-                        ❓ Bantuan
-                    </div>
-                </div>
-            `);
-        }
-    </script>
-</body>
-</html>
+                            </div>
