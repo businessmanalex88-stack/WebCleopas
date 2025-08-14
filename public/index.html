@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
@@ -31,14 +31,15 @@
         /* Login Page Styles */
         .login-container {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
             text-align: center;
             position: relative;
             overflow: hidden;
             width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .login-content {
@@ -47,76 +48,107 @@
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            margin: 0 auto 20px;
+            border-radius: 22px;
+            margin: 0 auto 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+            position: relative;
         }
 
         .logo::before {
             content: '🏢';
-            font-size: 32px;
+            font-size: 40px;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 24px;
+            z-index: -1;
+            opacity: 0.7;
+            filter: blur(4px);
         }
 
         h1 {
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: 300;
-            letter-spacing: 2px;
+            color: #2c3e50;
+            margin-bottom: 35px;
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: left;
         }
 
         .input-group input {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            padding: 18px 20px;
+            border: 2px solid #e8ecf4;
+            border-radius: 12px;
             font-size: 16px;
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+        }
+
+        .input-group input::placeholder {
+            color: #a0aec0;
         }
 
         .input-group input:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
             transform: translateY(-2px);
+            background: #ffffff;
         }
 
         .login-btn {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 10px;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .login-btn:active {
+            transform: translateY(-1px);
         }
 
         .error-message {
-            color: #ff4757;
+            color: #e74c3c;
             font-size: 14px;
-            margin-top: 10px;
+            margin-top: 15px;
             display: none;
+            background: #fdf2f2;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
         }
 
         /* Dashboard Styles */
@@ -133,53 +165,58 @@
 
         .dashboard-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 15px 20px;
+            padding: 20px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .menu-toggle {
-            background: none;
+            background: rgba(255, 255, 255, 0.2);
             border: none;
             color: white;
             font-size: 20px;
             cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .company-name {
             color: white;
             font-size: 18px;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .notification-badge {
             background: rgba(255, 255, 255, 0.2);
-            color: white;
             border-radius: 50%;
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
             position: relative;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -187,10 +224,11 @@
 
         .notification-badge:hover {
             background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
 
         .notification-badge::before {
-            content: '💬';
+            content: '🔔';
             font-size: 18px;
         }
 
@@ -198,16 +236,16 @@
             position: absolute;
             top: -5px;
             right: -5px;
-            background: #ff4757;
+            background: #e74c3c;
             color: white;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 10px;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .user-avatar {
@@ -220,7 +258,7 @@
             justify-content: center;
             color: white;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             position: relative;
             transition: all 0.3s ease;
@@ -228,6 +266,7 @@
 
         .user-avatar:hover {
             background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
 
         .dropdown-menu {
@@ -235,12 +274,13 @@
             top: 100%;
             right: 0;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             min-width: 180px;
             display: none;
             z-index: 1000;
-            border: 1px solid #e9ecef;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .dropdown-menu.active {
@@ -248,48 +288,36 @@
         }
 
         .dropdown-item {
-            padding: 12px 16px;
+            padding: 15px 20px;
             cursor: pointer;
             transition: background 0.3s;
             font-size: 14px;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: #2c3e50;
+            font-weight: 500;
         }
 
         .dropdown-item:hover {
             background: #f8f9fa;
         }
 
-        .dropdown-item:first-child {
-            border-radius: 8px 8px 0 0;
-        }
-
-        .dropdown-item:last-child {
-            border-radius: 0 0 8px 8px;
-            border-top: 1px solid #e9ecef;
-            color: #dc3545;
-        }
-
         .search-container {
-            padding: 20px;
+            padding: 25px;
+            position: relative;
         }
 
         .search-bar {
             width: 100%;
-            padding: 12px 20px 12px 45px;
+            padding: 15px 20px 15px 50px;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             background: rgba(255, 255, 255, 0.2);
             color: white;
             font-size: 14px;
-            position: relative;
             backdrop-filter: blur(10px);
         }
 
         .search-bar::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .search-bar:focus {
@@ -297,23 +325,20 @@
             background: rgba(255, 255, 255, 0.3);
         }
 
-        .search-container {
-            position: relative;
-        }
-
         .search-icon {
             position: absolute;
-            left: 35px;
+            left: 40px;
             top: 50%;
             transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
         }
 
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 0 20px 20px;
+            gap: 25px;
+            padding: 0 25px 25px;
         }
 
         .menu-item {
@@ -321,54 +346,88 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 15px 10px;
-            border-radius: 15px;
+            transition: all 0.4s ease;
+            padding: 15px;
+            border-radius: 16px;
         }
 
         .menu-item:hover {
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-8px);
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
         }
 
         .menu-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 12px;
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             position: relative;
-            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover .menu-icon {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
         }
 
         .menu-text {
             color: white;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
             text-align: center;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* Menu Item Colors */
-        .discuss .menu-icon { background: linear-gradient(135deg, #e74c3c, #c0392b); }
-        .dashboard-menu .menu-icon { background: linear-gradient(135deg, #e67e22, #d35400); }
-        .calendar .menu-icon { background: linear-gradient(135deg, #f1c40f, #f39c12); }
-        .employees .menu-icon { background: linear-gradient(135deg, #1abc9c, #16a085); }
-        .attendances .menu-icon { background: linear-gradient(135deg, #3498db, #2980b9); }
-        .overtime .menu-icon { background: linear-gradient(135deg, #2ecc71, #27ae60); }
-        .timeoff .menu-icon { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
-        .expenses .menu-icon { background: linear-gradient(135deg, #34495e, #2c3e50); }
-        .dashboards .menu-icon { background: linear-gradient(135deg, #e74c3c, #c0392b); }
-        .sop .menu-icon { background: linear-gradient(135deg, #3498db, #2980b9); }
+        /* Enhanced Menu Item Colors */
+        .discuss .menu-icon { 
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+        .dashboard-menu .menu-icon { 
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+        }
+        .calendar .menu-icon { 
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+            box-shadow: 0 8px 25px rgba(241, 196, 15, 0.4);
+        }
+        .employees .menu-icon { 
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            box-shadow: 0 8px 25px rgba(26, 188, 156, 0.4);
+        }
+        .attendances .menu-icon { 
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+        .overtime .menu-icon { 
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+        }
+        .timeoff .menu-icon { 
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.4);
+        }
+        .expenses .menu-icon { 
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            box-shadow: 0 8px 25px rgba(52, 73, 94, 0.4);
+        }
+        .dashboards .menu-icon { 
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+        .sop .menu-icon { 
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
 
         /* Page Content Styles */
         .page-content {
             display: none;
-            background: white;
+            background: #f8f9fa;
             min-height: calc(100vh - 80px);
         }
 
@@ -377,220 +436,77 @@
         }
 
         .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #667eea;
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
             border: none;
-            border-radius: 10px;
-            padding: 10px 15px;
+            border-radius: 12px;
+            padding: 12px 18px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 600;
             transition: all 0.3s ease;
             z-index: 1001;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
 
         .back-btn:hover {
-            background: white;
+            background: rgba(255, 255, 255, 0.3);
             transform: translateX(-3px);
         }
 
-        /* Calendar Styles */
-        .calendar-container {
-            max-width: 100%;
-            overflow-x: auto;
-        }
-
-        .calendar-header {
-            padding: 20px;
-            background: white;
-            border-bottom: 1px solid #e9ecef;
-            margin-top: 60px;
-        }
-
-        .calendar-title {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .calendar-controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .calendar-btn {
-            padding: 10px 16px;
-            border: 1px solid #667eea;
-            background: #667eea;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .calendar-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .calendar-btn.secondary {
-            background: white;
-            color: #667eea;
-        }
-
-        .calendar-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .nav-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn:hover {
-            background: #5a6fd8;
-            transform: scale(1.1);
-        }
-
-        .view-toggles {
-            display: flex;
-            gap: 5px;
-        }
-
-        .view-btn {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            background: white;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .view-btn.active {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 1px;
-            background: #e9ecef;
-            margin: 20px;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .calendar-day {
-            background: white;
-            padding: 10px;
-            min-height: 60px;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .calendar-day:hover {
-            background: #f8f9fa;
-        }
-
-        .calendar-day.today {
-            background: #667eea;
-            color: white;
-        }
-
-        .calendar-day.other-month {
-            color: #ccc;
-            background: #f8f9fa;
-        }
-
-        .day-number {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .day-events {
-            font-size: 10px;
-            color: #666;
-        }
-
-        .calendar-event {
-            background: #4CAF50;
-            color: white;
-            padding: 2px 4px;
-            border-radius: 3px;
-            margin-bottom: 2px;
-            font-size: 9px;
-        }
-
-        /* Employee Management Styles */
+        /* Content Header Styles */
         .content-header {
             padding: 25px;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            background: white;
             border-bottom: 1px solid #e9ecef;
-            margin-top: 60px;
+            margin-top: 70px;
         }
 
         .content-title {
             font-size: 28px;
-            color: #333;
+            color: #2c3e50;
             margin-bottom: 8px;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .content-subtitle {
-            color: #666;
-            font-size: 14px;
+            color: #718096;
+            font-size: 16px;
         }
 
         .action-bar {
             padding: 20px 25px;
-            background: #f8f9fa;
+            background: #ffffff;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 1px solid #e9ecef;
         }
 
         .btn {
-            padding: 10px 18px;
+            padding: 12px 24px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 600;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-primary {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
 
         .btn-secondary {
@@ -598,49 +514,52 @@
             color: white;
         }
 
-        .btn-success {
-            background: #28a745;
-            color: white;
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
         }
 
-        .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        /* Professional Table Styles */
+        .table-container {
+            margin: 25px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .data-table {
-            width: calc(100% - 50px);
+            width: 100%;
             border-collapse: collapse;
-            margin: 25px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .data-table th,
         .data-table td {
-            padding: 15px;
+            padding: 16px 20px;
             text-align: left;
-            border-bottom: 1px solid #e9ecef;
+            border-bottom: 1px solid #f1f3f4;
         }
 
         .data-table th {
             background: #f8f9fa;
             font-weight: 600;
-            color: #333;
+            color: #2c3e50;
             font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .data-table tr:hover {
+        .data-table tbody tr:hover {
             background: #f8f9fa;
         }
 
         .status-badge {
             padding: 6px 12px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .status-active {
@@ -658,29 +577,164 @@
             color: #721c24;
         }
 
-        /* SOP Styles */
+        /* Professional Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 35px rgba(0,0,0,0.15);
+        }
+
+        .stat-card h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8ecf4;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f3f4;
+        }
+
+        .modal-header h3 {
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #718096;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #f1f3f4;
+            color: #2c3e50;
+        }
+
+        /* SOP Sections */
         .sop-section {
-            margin: 20px 25px;
+            margin: 25px;
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .sop-header {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 18px 25px;
+            padding: 20px 25px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
 
         .sop-header:hover {
-            background: linear-gradient(135deg, #5a6fd8, #6c42a5);
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
         }
 
         .sop-content {
@@ -695,23 +749,23 @@
         .sop-steps {
             list-style: none;
             padding: 0;
+            counter-reset: step-counter;
         }
 
         .sop-steps li {
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f3f4;
             position: relative;
-            padding-left: 35px;
-            line-height: 1.5;
+            padding-left: 40px;
+            counter-increment: step-counter;
         }
 
         .sop-steps li:before {
             content: counter(step-counter);
-            counter-increment: step-counter;
             position: absolute;
             left: 0;
-            top: 12px;
-            background: #667eea;
+            top: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             width: 24px;
             height: 24px;
@@ -723,187 +777,65 @@
             font-weight: bold;
         }
 
-        .sop-steps {
-            counter-reset: step-counter;
-        }
-
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-            font-size: 14px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        /* Modal Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            max-width: 90%;
-            max-height: 90%;
-            overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e9ecef;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #999;
-            transition: color 0.3s ease;
-        }
-
-        .close-btn:hover {
-            color: #333;
-        }
-
-        /* Stats Cards */
-        .stats-grid {
-            padding: 25px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .stats-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-left: 4px solid #667eea;
-            transition: all 0.3s ease;
-        }
-
-        .stats-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .stats-card h3 {
-            color: #667eea;
-            margin-bottom: 12px;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stats-value {
-            font-size: 32px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .stats-label {
-            color: #666;
-            font-size: 12px;
-        }
-
-        /* Professional enhancements */
-        .floating-action {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-
-        .floating-action:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(0,0,0,0.4);
-        }
-
-        .quick-access {
-            position: fixed;
-            top: 50%;
-            right: -200px;
-            transform: translateY(-50%);
-            background: white;
-            border-radius: 12px 0 0 12px;
+        /* Professional company tagline */
+        .company-tagline {
+            margin-top: 25px;
             padding: 20px;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            transition: right 0.3s ease;
-            z-index: 998;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            text-align: center;
+            backdrop-filter: blur(10px);
         }
 
-        .quick-access.active {
-            right: 0;
+        /* Calendar Styles */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
         }
 
-        .quick-access-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 8px;
-            margin-bottom: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .quick-access-item:hover {
+        .calendar-header {
             background: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: #2c3e50;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .calendar-day {
+            padding: 15px;
+            min-height: 60px;
+            border: 1px solid #f1f3f4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: white;
+        }
+
+        .calendar-day:hover {
+            background: #f8f9fa;
+        }
+
+        .calendar-day.today {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .calendar-day.other-month {
+            color: #a0aec0;
+            background: #f8f9fa;
+        }
+
+        .calendar-event {
+            background: #e3f2fd;
+            border-left: 3px solid #1976d2;
+            padding: 2px 6px;
+            margin: 2px 0;
+            border-radius: 3px;
+            font-size: 10px;
         }
 
         @keyframes shake {
@@ -915,31 +847,30 @@
         @media (max-width: 480px) {
             .menu-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
+                gap: 20px;
+                padding: 0 20px 20px;
             }
             
             .dashboard-header {
-                padding: 10px 15px;
+                padding: 15px 20px;
             }
             
             .search-container {
-                padding: 15px;
+                padding: 20px;
             }
 
-            .calendar-grid {
-                font-size: 12px;
-                margin: 15px;
+            .stats-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
             }
 
-            .calendar-day {
-                min-height: 45px;
-                padding: 8px;
+            .content-header {
+                padding: 20px;
+                margin-top: 60px;
             }
 
-            .data-table {
-                width: calc(100% - 20px);
-                margin: 15px 10px;
-                font-size: 12px;
+            .content-title {
+                font-size: 24px;
             }
         }
     </style>
@@ -965,9 +896,10 @@
                     <div class="error-message" id="errorMessage">Username atau kata sandi salah!</div>
                 </form>
                 
-                <p style="margin-top: 20px; color: #666; font-size: 12px;">
-                    Professional HR Management System ✓ Powered by Advanced Technology
-                </p>
+                <div class="company-tagline">
+                    <strong>CLEOPAS HR Management System</strong><br>
+                    Solusi Profesional untuk Manajemen Sumber Daya Manusia
+                </div>
             </div>
         </div>
     </div>
@@ -978,7 +910,7 @@
         <div id="mainMenu" class="menu-view active">
             <div class="dashboard-header">
                 <div class="header-left">
-                    <button class="menu-toggle" onclick="toggleQuickAccess()">☰</button>
+                    <button class="menu-toggle">☰</button>
                     <span class="company-name">CLEOPAS HR System</span>
                 </div>
                 <div class="header-right">
@@ -989,7 +921,6 @@
                         <div class="dropdown-menu" id="userMenu">
                             <div class="dropdown-item" onclick="showProfile()">👤 Profil Saya</div>
                             <div class="dropdown-item" onclick="showSettings()">⚙️ Pengaturan</div>
-                            <div class="dropdown-item" onclick="showHelp()">❓ Bantuan</div>
                             <div class="dropdown-item" onclick="logout()">🚪 Keluar</div>
                         </div>
                     </div>
@@ -998,48 +929,48 @@
 
             <div class="search-container">
                 <div class="search-icon">🔍</div>
-                <input type="text" class="search-bar" placeholder="Cari fitur atau menu..." id="searchInput">
+                <input type="text" class="search-bar" placeholder="Cari menu atau fitur..." id="searchInput">
             </div>
 
             <div class="menu-grid" id="menuGrid">
                 <div class="menu-item discuss" onclick="showPage('discuss')">
                     <div class="menu-icon">💬</div>
-                    <div class="menu-text">Discuss</div>
+                    <div class="menu-text">Discussion</div>
                 </div>
                 
                 <div class="menu-item dashboard-menu" onclick="showPage('my-dashboard')">
                     <div class="menu-icon">📊</div>
-                    <div class="menu-text">My Dashboard</div>
+                    <div class="menu-text">Dashboard</div>
                 </div>
                 
                 <div class="menu-item calendar" onclick="showPage('calendar')">
                     <div class="menu-icon">📅</div>
-                    <div class="menu-text">Calendar</div>
+                    <div class="menu-text">Kalender</div>
                 </div>
                 
                 <div class="menu-item employees" onclick="showPage('employees')">
                     <div class="menu-icon">👥</div>
-                    <div class="menu-text">Employees</div>
+                    <div class="menu-text">Karyawan</div>
                 </div>
                 
                 <div class="menu-item attendances" onclick="showPage('attendances')">
                     <div class="menu-icon">👤</div>
-                    <div class="menu-text">Attendances</div>
+                    <div class="menu-text">Absensi</div>
                 </div>
                 
                 <div class="menu-item overtime" onclick="showPage('overtime')">
                     <div class="menu-icon">⏰</div>
-                    <div class="menu-text">Overtime</div>
+                    <div class="menu-text">Lembur</div>
                 </div>
                 
                 <div class="menu-item timeoff" onclick="showPage('timeoff')">
                     <div class="menu-icon">🌞</div>
-                    <div class="menu-text">Time Off</div>
+                    <div class="menu-text">Cuti & Izin</div>
                 </div>
                 
                 <div class="menu-item expenses" onclick="showPage('expenses')">
                     <div class="menu-icon">💰</div>
-                    <div class="menu-text">Expenses</div>
+                    <div class="menu-text">Pengeluaran</div>
                 </div>
                 
                 <div class="menu-item dashboards" onclick="showPage('dashboards')">
@@ -1054,126 +985,13 @@
             </div>
         </div>
 
-        <!-- Quick Access Panel -->
-        <div class="quick-access" id="quickAccessPanel">
-            <h4 style="margin-bottom: 15px; color: #333;">Quick Access</h4>
-            <div class="quick-access-item" onclick="quickCheckIn()">
-                <span>⏰</span>
-                <span>Quick Check-In</span>
-            </div>
-            <div class="quick-access-item" onclick="quickTimeOff()">
-                <span>🌞</span>
-                <span>Request Leave</span>
-            </div>
-            <div class="quick-access-item" onclick="quickExpense()">
-                <span>💰</span>
-                <span>Add Expense</span>
-            </div>
-            <div class="quick-access-item" onclick="showPage('calendar')">
-                <span>📅</span>
-                <span>View Calendar</span>
-            </div>
-        </div>
-
-        <!-- Floating Action Button -->
-        <div class="floating-action" onclick="showQuickActions()">+</div>
-
-        <!-- Discuss Page -->
-        <div id="discuss" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
-            <div class="dashboard-header">
-                <div class="header-left">
-                    <button class="menu-toggle">☰</button>
-                    <span class="company-name">Discussion Forum</span>
-                </div>
-                <div class="header-right">
-                    <div class="notification-badge">
-                        <div class="notification-count">3</div>
-                    </div>
-                    <div class="user-avatar">AC</div>
-                </div>
-            </div>
-
-            <div class="content-header">
-                <div class="content-title">Discussion Forum</div>
-                <div class="content-subtitle">Komunikasi dan kolaborasi tim</div>
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-primary" onclick="createDiscussion()">
-                    <span>💬</span> Buat Diskusi Baru
-                </button>
-                <button class="btn btn-secondary">
-                    <span>🔍</span> Filter
-                </button>
-                <button class="btn btn-success">
-                    <span>📋</span> Categories
-                </button>
-            </div>
-
-            <div style="padding: 25px;">
-                <div class="sop-section">
-                    <div class="sop-header" onclick="toggleSection(this)">
-                        <span>💬 Tim Development - Project Update</span>
-                        <span>▼</span>
-                    </div>
-                    <div class="sop-content">
-                        <p><strong>Atep Cahya Gumilang (Project Manager):</strong> Update sistem CLEOPAS sudah selesai. Silakan testing fitur baru yang telah ditambahkan:</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>Enhanced UI/UX design</li>
-                            <li>Quick access panel</li>
-                            <li>Advanced notification system</li>
-                            <li>Mobile responsive improvements</li>
-                        </ul>
-                        <small style="color: #666;">2 jam yang lalu • 5 replies</small>
-                        <div style="margin-top: 10px;">
-                            <button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Reply</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sop-section">
-                    <div class="sop-header" onclick="toggleSection(this)">
-                        <span>📢 Pengumuman HR - New Policy</span>
-                        <span>▼</span>
-                    </div>
-                    <div class="sop-content">
-                        <p><strong>Atep Cahya Gumilang (HR Manager):</strong> Kebijakan baru terkait work from home:</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>WFH maksimal 2 hari per minggu</li>
-                            <li>Wajib koordinasi dengan supervisor</li>
-                            <li>Check-in via sistem tetap wajib</li>
-                        </ul>
-                        <small style="color: #666;">5 jam yang lalu • 12 replies</small>
-                        <div style="margin-top: 10px;">
-                            <button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Reply</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sop-section">
-                    <div class="sop-header" onclick="toggleSection(this)">
-                        <span>🎉 General - Team Achievement</span>
-                        <span>▼</span>
-                    </div>
-                    <div class="sop-content">
-                        <p><strong>Atep Cahya Gumilang (CEO):</strong> Selamat untuk tim atas pencapaian target Q3 2025! Bonus performance akan dibagikan bulan depan.</p>
-                        <small style="color: #666;">1 hari yang lalu • 25 replies</small>
-                        <div style="margin-top: 10px;">
-                            <button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Reply</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- My Dashboard Page -->
+        <!-- Dashboard Page -->
         <div id="my-dashboard" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <button class="back-btn" onclick="showMainMenu()">← Kembali</button>
             <div class="dashboard-header">
                 <div class="header-left">
                     <button class="menu-toggle">☰</button>
-                    <span class="company-name">Personal Dashboard</span>
+                    <span class="company-name">Dashboard Pribadi</span>
                 </div>
                 <div class="header-right">
                     <div class="notification-badge">
@@ -1184,90 +1002,104 @@
             </div>
 
             <div class="content-header">
-                <div class="content-title">Dashboard Pribadi</div>
+                <div class="content-title">Selamat Datang, Atep Cahya Gumilang</div>
                 <div class="content-subtitle">Ringkasan aktivitas dan informasi penting Anda</div>
             </div>
 
             <div class="stats-grid">
-                <div class="stats-card">
-                    <h3>📊 Kehadiran Bulan Ini</h3>
-                    <div class="stats-value">22/23</div>
-                    <div class="stats-label">Hari kerja hadir</div>
-                    <div style="margin-top: 10px; font-size: 12px; color: #28a745;">
-                        ✓ Performance sangat baik
-                    </div>
+                <div class="stat-card" style="border-left-color: #667eea;">
+                    <h3 style="color: #667eea;">📊 Kehadiran Bulan Ini</h3>
+                    <div class="stat-value" style="color: #667eea;">22/23</div>
+                    <div class="stat-label">Hari kerja efektif</div>
                 </div>
 
-                <div class="stats-card" style="border-left-color: #e67e22;">
-                    <h3>⏰ Overtime Bulan Ini</h3>
-                    <div class="stats-value">12</div>
-                    <div class="stats-label">Jam lembur</div>
-                    <div style="margin-top: 10px; font-size: 12px; color: #e67e22;">
-                        📈 +3 jam dari bulan lalu
-                    </div>
+                <div class="stat-card" style="border-left-color: #e67e22;">
+                    <h3 style="color: #e67e22;">⏰ Total Lembur</h3>
+                    <div class="stat-value" style="color: #e67e22;">12 Jam</div>
+                    <div class="stat-label">Bulan ini</div>
                 </div>
 
-                <div class="stats-card" style="border-left-color: #2ecc71;">
-                    <h3>🌞 Cuti Tersisa</h3>
-                    <div class="stats-value">8</div>
-                    <div class="stats-label">Hari tersisa dari 12 hari</div>
-                    <div style="margin-top: 10px; font-size: 12px; color: #2ecc71;">
-                        💡 Rencanakan cuti Anda
-                    </div>
+                <div class="stat-card" style="border-left-color: #2ecc71;">
+                    <h3 style="color: #2ecc71;">🌞 Sisa Cuti</h3>
+                    <div class="stat-value" style="color: #2ecc71;">8 Hari</div>
+                    <div class="stat-label">Dari total 12 hari</div>
                 </div>
 
-                <div class="stats-card" style="border-left-color: #9b59b6;">
-                    <h3>💰 Expenses Pending</h3>
-                    <div class="stats-value">Rp 250K</div>
-                    <div class="stats-label">Menunggu approval</div>
-                    <div style="margin-top: 10px; font-size: 12px; color: #9b59b6;">
-                        ⏳ 2 item dalam review
-                    </div>
+                <div class="stat-card" style="border-left-color: #9b59b6;">
+                    <h3 style="color: #9b59b6;">💰 Total Reimburse</h3>
+                    <div class="stat-value" style="color: #9b59b6;">2.1M</div>
+                    <div class="stat-label">Rupiah bulan ini</div>
                 </div>
+            </div>
+        </div>
 
-                <div class="stats-card" style="border-left-color: #e74c3c;">
-                    <h3>📋 Task Progress</h3>
-                    <div class="stats-value">85%</div>
-                    <div class="stats-label">Monthly target completion</div>
-                    <div style="margin-top: 10px; font-size: 12px; color: #e74c3c;">
-                        🎯 Hampir mencapai target
-                    </div>
+        <!-- Discuss Page -->
+        <div id="discuss" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Kembali</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="company-name">Forum Diskusi</span>
                 </div>
-
-                <div class="stats-card" style="border-left-color: #3498db;">
-                    <h3>📈 Performance Score</h3>
-                    <div class="stats-value">4.8/5</div>
-                    <div class="stats-label">Rating bulan ini</div>
-                    <div style="margin-top: 10px; font-size: 12px; color: #3498db;">
-                        ⭐ Excellent performance
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">3</div>
                     </div>
+                    <div class="user-avatar">AC</div>
                 </div>
             </div>
 
-            <!-- Recent Activities -->
+            <div class="content-header">
+                <div class="content-title">Forum Diskusi Tim</div>
+                <div class="content-subtitle">Komunikasi dan kolaborasi antar karyawan</div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="createDiscussion()">💬 Buat Diskusi Baru</button>
+                <button class="btn btn-secondary">🔍 Filter Diskusi</button>
+            </div>
+
             <div style="padding: 25px;">
-                <h3 style="margin-bottom: 20px; color: #333;">Recent Activities</h3>
-                <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
-                        <div>
-                            <div style="font-weight: 600;">✅ Check-in berhasil</div>
-                            <small style="color: #666;">Hari ini, 08:15 WIB</small>
-                        </div>
-                        <span style="color: #28a745;">On time</span>
+                <div class="sop-section">
+                    <div class="sop-header" onclick="toggleSection(this)">
+                        <span>💼 Diskusi Tim Development</span>
+                        <span>▼</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
-                        <div>
-                            <div style="font-weight: 600;">📋 Task completed: UI Review</div>
-                            <small style="color: #666;">Kemarin, 16:30 WIB</small>
+                    <div class="sop-content">
+                        <div style="padding: 15px 0; border-bottom: 1px solid #f1f3f4;">
+                            <p><strong>Atep Cahya Gumilang:</strong> Update sistem CLEOPAS sudah selesai dan siap untuk testing. Mohon tim untuk melakukan review fitur terbaru.</p>
+                            <small style="color: #718096;">2 jam yang lalu • 5 balasan</small>
                         </div>
-                        <span style="color: #667eea;">Completed</span>
+                        <div style="padding: 15px 0;">
+                            <p><strong>Sarah Putri:</strong> Baik pak, akan segera saya test dan berikan feedback.</p>
+                            <small style="color: #718096;">1 jam yang lalu</small>
+                        </div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;">
-                        <div>
-                            <div style="font-weight: 600;">💰 Expense submitted</div>
-                            <small style="color: #666;">2 hari lalu</small>
+                </div>
+
+                <div class="sop-section">
+                    <div class="sop-header" onclick="toggleSection(this)">
+                        <span>📢 Pengumuman HR</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="sop-content">
+                        <div style="padding: 15px 0;">
+                            <p><strong>HR Manager:</strong> Reminder untuk semua karyawan agar mengisi timesheet mingguan tepat waktu. Deadline setiap Jumat pukul 17:00 WIB.</p>
+                            <small style="color: #718096;">5 jam yang lalu • 12 views</small>
                         </div>
-                        <span style="color: #ffc107;">Pending</span>
+                    </div>
+                </div>
+
+                <div class="sop-section">
+                    <div class="sop-header" onclick="toggleSection(this)">
+                        <span>🎯 Project Updates</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="sop-content">
+                        <div style="padding: 15px 0;">
+                            <p><strong>Project Manager:</strong> Milestone 1 telah tercapai dengan baik. Progress saat ini 75% dari total project timeline.</p>
+                            <small style="color: #718096;">1 hari yang lalu • 8 likes</small>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1275,53 +1107,11 @@
 
         <!-- Calendar Page -->
         <div id="calendar" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
+            <button class="back-btn" onclick="showMainMenu()">← Kembali</button>
             <div class="dashboard-header">
                 <div class="header-left">
                     <button class="menu-toggle">☰</button>
-                    <span class="company-name">Calendar</span>
-                </div>
-                <div class="header-right">
-                    <div class="notification-badge">
-                        <div class="notification-count">3</div>
-                    </div>
-                    <div class="user-avatar">AC</div>
-                </div>
-            </div>
-
-            <div class="calendar-header">
-                <div class="calendar-title" id="calendarTitle">Agustus 2025</div>
-                
-                <div class="calendar-controls">
-                    <button class="calendar-btn" onclick="addEvent()">
-                        <span>➕</span> Tambah Acara
-                    </button>
-                    <button class="calendar-btn secondary" onclick="previousMonth()">‹ Sebelumnya</button>
-                    <button class="calendar-btn secondary" onclick="nextMonth()">Selanjutnya ›</button>
-                    <button class="calendar-btn secondary" onclick="goToToday()">Hari Ini</button>
-                </div>
-
-                <div class="view-toggles">
-                    <button class="view-btn" onclick="setView('day')">Hari</button>
-                    <button class="view-btn active" onclick="setView('month')">Bulan</button>
-                    <button class="view-btn" onclick="setView('year')">Tahun</button>
-                </div>
-            </div>
-
-            <div class="calendar-container">
-                <div class="calendar-grid" id="calendarGrid">
-                    <!-- Calendar will be generated by JavaScript -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Employees Page -->
-        <div id="employees" class="page-content">
-            <button class="back-btn" onclick="showMainMenu()">← Back</button>
-            <div class="dashboard-header">
-                <div class="header-left">
-                    <button class="menu-toggle">☰</button>
-                    <span class="company-name">Employee Management</span>
+                    <span class="company-name">Kalender Kerja</span>
                 </div>
                 <div class="header-right">
                     <div class="notification-badge">
@@ -1332,190 +1122,406 @@
             </div>
 
             <div class="content-header">
-                <div class="content-title">Manajemen Karyawan</div>
-                <div class="content-subtitle">Kelola data dan informasi karyawan secara profesional</div>
+                <div class="content-title">Kalender & Jadwal</div>
+                <div class="content-subtitle">Kelola jadwal kerja dan acara penting</div>
             </div>
 
             <div class="action-bar">
-                <button class="btn btn-primary" onclick="addEmployee()">
-                    <span>👤</span> Tambah Karyawan
-                </button>
-                <button class="btn btn-secondary">
-                    <span>📊</span> Export Data
-                </button>
-                <button class="btn btn-secondary">
-                    <span>🔍</span> Advanced Filter
-                </button>
-                <button class="btn btn-success">
-                    <span>📧</span> Bulk Actions
-                </button>
+                <button class="btn btn-primary" onclick="addEvent()">📅 Tambah Acara</button>
+                <button class="btn btn-secondary" onclick="previousMonth()">‹ Bulan Lalu</button>
+                <button class="btn btn-secondary" onclick="nextMonth()">Bulan Depan ›</button>
+                <button class="btn btn-secondary" onclick="goToToday()">Hari Ini</button>
             </div>
 
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Nama Lengkap</th>
-                        <th>Posisi</th>
-                        <th>Departemen</th>
-                        <th>Status</th>
-                        <th>Performance</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="employeeTable">
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <div style="width: 32px; height: 32px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">AC</div>
-                                <div>
-                                    <div style="font-weight: 600;">Atep Cahya Gumilang</div>
-                                    <small style="color: #666;">atep.gumilang@company.com</small>
-                                </div>
-                            </div>
-                        </td>
-                        <td>CEO & Founder</td>
-                        <td>Management</td>
-                        <td><span class="status-badge status-active">Aktif</span></td>
-                        <td>⭐⭐⭐⭐⭐</td>
-                        <td>
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="editEmployee(1)">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <div style="width: 32px; height: 32px; background: #e67e22; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">SP</div>
-                                <div>
-                                    <div style="font-weight: 600;">Sarah Putri</div>
-                                    <small style="color: #666;">sarah.putri@company.com</small>
-                                </div>
-                            </div>
-                        </td>
-                        <td>Senior UI/UX Designer</td>
-                        <td>Design</td>
-                        <td><span class="status-badge status-active">Aktif</span></td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="editEmployee(2)">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <div style="width: 32px; height: 32px; background: #2ecc71; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">BS</div>
-                                <div>
-                                    <div style="font-weight: 600;">Budi Santoso</div>
-                                    <small style="color: #666;">budi.santoso@company.com</small>
-                                </div>
-                            </div>
-                        </td>
-                        <td>Senior Project Manager</td>
-                        <td>Management</td>
-                        <td><span class="status-badge status-active">Aktif</span></td>
-                        <td>⭐⭐⭐⭐⭐</td>
-                        <td>
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="editEmployee(3)">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <div style="width: 32px; height: 32px; background: #9b59b6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">DR</div>
-                                <div>
-                                    <div style="font-weight: 600;">Dewi Rahmawati</div>
-                                    <small style="color: #666;">dewi.rahmawati@company.com</small>
-                                </div>
-                            </div>
-                        </td>
-                        <td>HR Specialist</td>
-                        <td>Human Resources</td>
-                        <td><span class="status-badge status-active">Aktif</span></td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="editEmployee(4)">Edit</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div style="padding: 25px;">
+                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+                    <div style="padding: 20px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; display: flex; justify-content: space-between; align-items: center;">
+                        <h3 id="calendarTitle" style="margin: 0; font-size: 20px; font-weight: 600;">Agustus 2025</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <button onclick="setView('month')" style="padding: 8px 16px; background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 6px; cursor: pointer;">Bulan</button>
+                            <button onclick="setView('week')" style="padding: 8px 16px; background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 6px; cursor: pointer;">Minggu</button>
+                        </div>
+                    </div>
+                    <div class="calendar-container">
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar will be generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
- grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
-                        <div style="color: #28a745; font-size: 24px; font-weight: bold;" id="checkInTime">08:15</div>
-                        <div style="color: #666; font-size: 12px;">Check In Time</div>
+        <!-- Employees Page -->
+        <div id="employees" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Kembali</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="company-name">Manajemen Karyawan</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">3</div>
                     </div>
-                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
-                        <div style="color: #dc3545; font-size: 24px; font-weight: bold;" id="checkOutTime">-</div>
-                        <div style="color: #666; font-size: 12px;">Check Out Time</div>
+                    <div class="user-avatar">AC</div>
+                </div>
+            </div>
+
+            <div class="content-header">
+                <div class="content-title">Data Karyawan</div>
+                <div class="content-subtitle">Kelola informasi dan data karyawan perusahaan</div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="addEmployee()">👤 Tambah Karyawan</button>
+                <button class="btn btn-secondary">📊 Export Data</button>
+                <button class="btn btn-secondary">🔍 Filter</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nama Lengkap</th>
+                            <th>Posisi</th>
+                            <th>Departemen</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeTable">
+                        <tr>
+                            <td><strong>Atep Cahya Gumilang</strong><br><small style="color: #718096;">atep.cahya@company.com</small></td>
+                            <td>HR Manager</td>
+                            <td>Human Resources</td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="editEmployee(1)">Edit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sarah Putri Andini</strong><br><small style="color: #718096;">sarah.putri@company.com</small></td>
+                            <td>UI/UX Designer</td>
+                            <td>Design & Creative</td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="editEmployee(2)">Edit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Budi Santoso</strong><br><small style="color: #718096;">budi.santoso@company.com</small></td>
+                            <td>Project Manager</td>
+                            <td>Project Management</td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="editEmployee(3)">Edit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maya Sari</strong><br><small style="color: #718096;">maya.sari@company.com</small></td>
+                            <td>Software Developer</td>
+                            <td>Information Technology</td>
+                            <td><span class="status-badge status-pending">Training</span></td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="editEmployee(4)">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Attendances Page -->
+        <div id="attendances" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Kembali</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="company-name">Sistem Absensi</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">3</div>
                     </div>
-                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
-                        <div style="color: #667eea; font-size: 24px; font-weight: bold;" id="totalHours">-</div>
-                        <div style="color: #666; font-size: 12px;">Total Working Hours</div>
-                    </div>
-                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
-                        <div style="color: #ffc107; font-size: 24px; font-weight: bold;">On Time</div>
-                        <div style="color: #666; font-size: 12px;">Status</div>
+                    <div class="user-avatar">AC</div>
+                </div>
+            </div>
+
+            <div class="content-header">
+                <div class="content-title">Absensi Harian</div>
+                <div class="content-subtitle">Monitoring kehadiran dan jam kerja karyawan</div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="checkIn()">✅ Check In</button>
+                <button class="btn btn-secondary" onclick="checkOut()">🚪 Check Out</button>
+                <button class="btn btn-secondary">📊 Laporan</button>
+            </div>
+
+            <div class="stats-grid" style="grid-template-columns: 1fr;">
+                <div class="stat-card" style="border-left-color: #667eea;">
+                    <h3 style="color: #667eea;">📍 Status Kehadiran Hari Ini</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                        <div>
+                            <div style="font-size: 14px; color: #718096; margin-bottom: 5px;">Check In</div>
+                            <div style="font-size: 20px; font-weight: 600; color: #2c3e50;" id="checkInTime">08:15 WIB</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 14px; color: #718096; margin-bottom: 5px;">Check Out</div>
+                            <div style="font-size: 20px; font-weight: 600; color: #2c3e50;" id="checkOutTime">Belum Check Out</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 14px; color: #718096; margin-bottom: 5px;">Total Jam Kerja</div>
+                            <div style="font-size: 20px; font-weight: 600; color: #2c3e50;" id="totalHours">Sedang Berjalan</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 14px; color: #718096; margin-bottom: 5px;">Status</div>
+                            <div><span class="status-badge status-active">Hadir Tepat Waktu</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Tanggal</th>
-                        <th>Check In</th>
-                        <th>Check Out</th>
-                        <th>Total Jam</th>
-                        <th>Break Time</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>14 Agustus 2025</td>
-                        <td>08:15</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td><span class="status-badge status-active">Hadir</span></td>
-                        <td>
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">View</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>13 Agustus 2025</td>
-                        <td>08:05</td>
-                        <td>17:30</td>
-                        <td>9.0 jam</td>
-                        <td>0.5 jam</td>
-                        <td><span class="status-badge status-active">Hadir</span></td>
-                        <td>
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">View</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>12 Agustus 2025</td>
-                        <td>08:30</td>
-                        <td>17:15</td>
-                        <td>8.25 jam</td>
-                        <td>0.5 jam</td>
-                        <td><span class="status-badge status-pending">Terlambat</span></td>
-                        <td>
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">View</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>11 Agustus 2025</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td><span class="status-badge status-inactive">Cuti</span></td>
-                        <td>
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">View</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-                            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Total Jam</th>
+                            <th>Status Kehadiran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>14 Agustus 2025</strong><br><small style="color: #718096;">Hari ini</small></td>
+                            <td>08:15 WIB</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><span class="status-badge status-active">Sedang Bekerja</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>13 Agustus 2025</strong><br><small style="color: #718096;">Kemarin</small></td>
+                            <td>08:05 WIB</td>
+                            <td>17:30 WIB</td>
+                            <td>9.5 jam</td>
+                            <td><span class="status-badge status-active">Hadir</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>12 Agustus 2025</strong><br><small style="color: #718096;">Senin</small></td>
+                            <td>08:30 WIB</td>
+                            <td>17:15 WIB</td>
+                            <td>8.75 jam</td>
+                            <td><span class="status-badge status-pending">Terlambat</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>09 Agustus 2025</strong><br><small style="color: #718096;">Jumat</small></td>
+                            <td>08:00 WIB</td>
+                            <td>17:00 WIB</td>
+                            <td>9.0 jam</td>
+                            <td><span class="status-badge status-active">Hadir</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Overtime Page -->
+        <div id="overtime" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Kembali</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="company-name">Manajemen Lembur</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">3</div>
+                    </div>
+                    <div class="user-avatar">AC</div>
+                </div>
+            </div>
+
+            <div class="content-header">
+                <div class="content-title">Lembur Karyawan</div>
+                <div class="content-subtitle">Pengajuan dan monitoring jam kerja lembur</div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="requestOvertime()">⏰ Ajukan Lembur</button>
+                <button class="btn btn-secondary">📊 Laporan Lembur</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Tanggal Pengajuan</th>
+                            <th>Jam Mulai</th>
+                            <th>Jam Selesai</th>
+                            <th>Total Jam</th>
+                            <th>Keterangan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>12 Agustus 2025</strong><br><small style="color: #718096;">Senin</small></td>
+                            <td>18:00 WIB</td>
+                            <td>21:00 WIB</td>
+                            <td>3 jam</td>
+                            <td>Menyelesaikan project deadline sistem CLEOPAS</td>
+                            <td><span class="status-badge status-active">Disetujui</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>10 Agustus 2025</strong><br><small style="color: #718096;">Sabtu</small></td>
+                            <td>18:30 WIB</td>
+                            <td>20:30 WIB</td>
+                            <td>2 jam</td>
+                            <td>Debugging dan testing sistem</td>
+                            <td><span class="status-badge status-pending">Menunggu Persetujuan</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>08 Agustus 2025</strong><br><small style="color: #718096;">Kamis</small></td>
+                            <td>17:30 WIB</td>
+                            <td>20:00 WIB</td>
+                            <td>2.5 jam</td>
+                            <td>Maintenance server dan database</td>
+                            <td><span class="status-badge status-active">Disetujui</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Time Off Page -->
+        <div id="timeoff" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Kembali</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="company-name">Cuti & Izin</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">3</div>
+                    </div>
+                    <div class="user-avatar">AC</div>
+                </div>
+            </div>
+
+            <div class="content-header">
+                <div class="content-title">Manajemen Cuti & Izin</div>
+                <div class="content-subtitle">Pengajuan dan monitoring time off karyawan</div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="requestTimeOff()">🌞 Ajukan Cuti/Izin</button>
+                <button class="btn btn-secondary">📋 Sisa Cuti: 8 Hari</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Jenis Cuti/Izin</th>
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Selesai</th>
+                            <th>Durasi</th>
+                            <th>Keterangan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cuti Tahunan</strong><br><small style="color: #718096;">Annual Leave</small></td>
+                            <td>20 Agustus 2025</td>
+                            <td>22 Agustus 2025</td>
+                            <td>3 hari</td>
+                            <td>Liburan keluarga ke Bandung</td>
+                            <td><span class="status-badge status-pending">Menunggu Persetujuan</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Izin Sakit</strong><br><small style="color: #718096;">Sick Leave</small></td>
+                            <td>05 Agustus 2025</td>
+                            <td>05 Agustus 2025</td>
+                            <td>1 hari</td>
+                            <td>Sakit demam dan flu</td>
+                            <td><span class="status-badge status-active">Disetujui</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cuti Melahirkan</strong><br><small style="color: #718096;">Maternity Leave</small></td>
+                            <td>01 Juli 2025</td>
+                            <td>30 September 2025</td>
+                            <td>90 hari</td>
+                            <td>Cuti melahirkan anak pertama</td>
+                            <td><span class="status-badge status-active">Disetujui</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Expenses Page -->
+        <div id="expenses" class="page-content">
+            <button class="back-btn" onclick="showMainMenu()">← Kembali</button>
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <span class="company-name">Manajemen Pengeluaran</span>
+                </div>
+                <div class="header-right">
+                    <div class="notification-badge">
+                        <div class="notification-count">3</div>
+                    </div>
+                    <div class="user-avatar">AC</div>
+                </div>
+            </div>
+
+            <div class="content-header">
+                <div class="content-title">Reimbursement & Pengeluaran</div>
+                <div class="content-subtitle">Kelola pengeluaran dan reimbursement karyawan</div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="addExpense()">💰 Tambah Pengeluaran</button>
+                <button class="btn btn-secondary">📊 Export Laporan</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Kategori</th>
+                            <th>Deskripsi</th>
+                            <th>Nominal</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>12 Agustus 2025</strong><br><small style="color: #718096;">Senin</small></td>
+                            <td><span style="background: #e3f2fd; color: #1565c0; padding: 4px 8px; border-radius: 4px; font-size: 11px;">Transport</span></td>
+                            <td>Taxi meeting dengan client di Jakarta Selatan</td>
+                            <td><strong>Rp 85,000</strong></td>
+                            <td><span class="status-badge status-pending">Review</span></td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Edit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>10 Agustus 2025</strong><br><small style="color: #718096;">Sabtu</small></td>
+                            <td><span style="background: #e8f5e8; color: #2e7d32; padding: 4px 8px; border-radius: 4px; font-size: 11px;">Konsumsi</span></td>
+                            <td>Makan siang meeting koordinasi project</td>
+                            <td><strong>Rp 125,000</strong></td>
+                            <td><span class="status-badge status-active">Disetujui</span></td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>08 Agustus 2025</strong><br><small style="color: #718096;">Kamis</small></td>
+                            <td><span style="background: #fff3e0; color: #f57c00; padding: 4px 8px; border-radius: 4
